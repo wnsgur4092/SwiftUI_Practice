@@ -11,6 +11,9 @@
 		BFC23946297CD9F4005EB2B1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC23945297CD9F4005EB2B1 /* ContentView.swift */; };
 		BFC23948297CD9F4005EB2B1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFC23947297CD9F4005EB2B1 /* Assets.xcassets */; };
 		BFC2394B297CD9F4005EB2B1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFC2394A297CD9F4005EB2B1 /* Preview Assets.xcassets */; };
+		BFE300A8297D081E00C1F088 /* NanumGothic-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BFE300A5297D081D00C1F088 /* NanumGothic-Regular.ttf */; };
+		BFE300A9297D081E00C1F088 /* NanumGothic-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BFE300A6297D081D00C1F088 /* NanumGothic-Bold.ttf */; };
+		BFE300AA297D081E00C1F088 /* NanumGothic-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BFE300A7297D081E00C1F088 /* NanumGothic-ExtraBold.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +22,10 @@
 		BFC23945297CD9F4005EB2B1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		BFC23947297CD9F4005EB2B1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BFC2394A297CD9F4005EB2B1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		BFE300A5297D081D00C1F088 /* NanumGothic-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NanumGothic-Regular.ttf"; sourceTree = "<group>"; };
+		BFE300A6297D081D00C1F088 /* NanumGothic-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NanumGothic-Bold.ttf"; sourceTree = "<group>"; };
+		BFE300A7297D081E00C1F088 /* NanumGothic-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NanumGothic-ExtraBold.ttf"; sourceTree = "<group>"; };
+		BFE300AB297D084000C1F088 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +58,8 @@
 		BFC23942297CD9F4005EB2B1 /* Week1 */ = {
 			isa = PBXGroup;
 			children = (
+				BFE300AB297D084000C1F088 /* Info.plist */,
+				BFE300A4297D081000C1F088 /* Fonts */,
 				BFC23943297CD9F4005EB2B1 /* Week1App.swift */,
 				BFC23945297CD9F4005EB2B1 /* ContentView.swift */,
 				BFC23947297CD9F4005EB2B1 /* Assets.xcassets */,
@@ -65,6 +74,16 @@
 				BFC2394A297CD9F4005EB2B1 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		BFE300A4297D081000C1F088 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				BFE300A6297D081D00C1F088 /* NanumGothic-Bold.ttf */,
+				BFE300A7297D081E00C1F088 /* NanumGothic-ExtraBold.ttf */,
+				BFE300A5297D081D00C1F088 /* NanumGothic-Regular.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -125,8 +144,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BFE300AA297D081E00C1F088 /* NanumGothic-ExtraBold.ttf in Resources */,
+				BFE300A8297D081E00C1F088 /* NanumGothic-Regular.ttf in Resources */,
 				BFC2394B297CD9F4005EB2B1 /* Preview Assets.xcassets in Resources */,
 				BFC23948297CD9F4005EB2B1 /* Assets.xcassets in Resources */,
+				BFE300A9297D081E00C1F088 /* NanumGothic-Bold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -270,6 +292,7 @@
 				DEVELOPMENT_TEAM = L8QX5LU28U;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Week1/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -299,6 +322,7 @@
 				DEVELOPMENT_TEAM = L8QX5LU28U;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Week1/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
