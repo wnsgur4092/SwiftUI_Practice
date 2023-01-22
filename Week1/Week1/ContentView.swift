@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import PhotosUI
+import UIKit
 
 struct ContentView: View {
     //MARK: - PROPERTIES
@@ -14,143 +16,188 @@ struct ContentView: View {
     @State var selfDescription : String = ""
     @State var snsURL : String = ""
     
-    @State private var textFields: [Text] = []
-    private var maxTextFields = 2
+    @State var textFieldCount = 0
+    
+    @State var selectedItems : [PhotosPickerItem] = []
+    
+    @State var showSelection : Bool = false
+    
+    
     
     //MARK: - BODY
     var body: some View {
         NavigationView {
-            VStack{
-                Circle()
-                    .frame(width: 80, height:80)
-                    .padding(.top, 16)
-                    .padding(.horizontal, 147.5)
-                
-                VStack(alignment: .leading) {
-                    Text("닉네임")
-                    TextField("쩡대리", text: $nickname)
-                        .frame(width: .infinity)
-                        .textFieldStyle(.roundedBorder)
+            ScrollView(.vertical, showsIndicators: false) {
+                VStack{
                     
-                    HStack {
-                        Spacer()
+                    //프로필 이미지
+                    ZStack {
+                        Image("profile")
+                            .frame(width: 80, height:80)
+                            .padding(.top, 16)
+                            .padding(.horizontal, 147.5)
                         
-                        Text("3/20")
-                            .font(.system(size:12))
+                        Image(systemName: "camera.fill")
+                            .renderingMode(.original)
+                            .resizable()
+                            .foregroundColor(.white)
+                            .frame(width:13.33,height:12)
+                            .background(Circle().fill(Color.blue).frame(width:24,height:24))
+                            .offset(x: 30, y: 35)
+                    }
+                    .onTapGesture {
+                        showSelection = true
+                    }
+                    .confirmationDialog("", isPresented: $showSelection) {
+                        Button {
+                            
+                        } label: {
+                            Text("카메라")
+                        }
                         
+                        Button {
+
+                        } label: {
+                            Text("앨범")
+                        }
+                    }
+                    
+                    
+                    //닉네임
+                    VStack(alignment: .leading) {
+                        Text("닉네임")
+                        TextField("쩡대리", text: $nickname)
+                            .textFieldStyle(.roundedBorder)
                         
+                        HStack {
+                            Spacer()
+                            
+                            Text("3/20")
+                                .font(.system(size:12))
+                            
+                            
+                            
+                        }
+                        .frame(width: 340, height: 18)
                         
                     }
-                    .frame(width: 340, height: 18)
                     
-                }
-                
-                
-                VStack(alignment: .leading) {
-                    Text("한 줄 프로필")
-                    TextField("자신을 표현할 한 줄 소개입니다.", text: $briefProfile)
-                        .frame(width: .infinity)
-                        .textFieldStyle(.roundedBorder)
-                    
-                    HStack {
-                        Spacer()
+                    //한 줄 프로필
+                    VStack(alignment: .leading) {
+                        Text("한 줄 프로필")
+                        TextField("자신을 표현할 한 줄 소개입니다.", text: $briefProfile)
+                            .textFieldStyle(.roundedBorder)
                         
-                        Text("3/20")
-                            .font(.system(size:12))
+                        HStack {
+                            Spacer()
+                            
+                            Text("3/20")
+                                .font(.system(size:12))
+                        }
+                        .frame(width: 340, height: 18)
                     }
-                    .frame(width: 340, height: 18)
-                }
-                
-                VStack(alignment: .leading) {
-                    Text("자기소개")
-                    TextField("다른 사람에게 나를 소개할 수 있도록 자신의 활동을 자세하게 적어주세요", text: $selfDescription, axis: .vertical)
-                        .lineLimit(3)
-                        .frame(height: 200, alignment: .top)
-                        .padding(16)
                     
-                    
-                    
-                        .overlay(RoundedRectangle(cornerRadius: 16).stroke(Color.gray, lineWidth: 0.5))
-                    
-                    HStack {
-                        Spacer()
+                    //자기소개
+                    VStack(alignment: .leading) {
+                        Text("자기소개")
+                        TextField("다른 사람에게 나를 소개할 수 있도록 자신의 활동을 자세하게 적어주세요", text: $selfDescription, axis: .vertical)
+                            .lineLimit(3)
+                            .frame(height: 200, alignment: .top)
+                            .padding(16)
                         
-                        Text("3/20")
-                            .font(.system(size:12))
+                        
+                        
+                            .overlay(RoundedRectangle(cornerRadius: 16).stroke(Color.gray, lineWidth: 0.5))
+                        
+                        HStack {
+                            Spacer()
+                            
+                            Text("3/20")
+                                .font(.system(size:12))
+                        }
+                        .frame(width: 340, height: 18)
                     }
-                    .frame(width: 340, height: 18)
-                }
-                
-                VStack(alignment: .leading) {
-                    Text("웹사이트 연결")
-                    Group {
+                    
+                    //웹사이트
+                    VStack(alignment: .leading) {
+                        Text("웹사이트 연결")
+                        
                         HStack {
                             TextField("SNS 또는 홈페이지를 연결해주세요.", text: $snsURL)
-                                .frame(width: .infinity)
+                            
                                 .textFieldStyle(.roundedBorder)
                         }
                         
-                    }
-
-                    Button {
+                        ForEach(0..<textFieldCount, id: \.self) { _ in
+                            HStack(spacing: 10) {
+                                TextField("SNS 또는 홈페이지를 연결해주세요.", text: $snsURL)
+                                    .frame(width: 290)
+                                    .padding(.vertical, 10)
+                                    .padding(.leading, 16)
+                                    .overlay(
+                                        RoundedRectangle(cornerRadius: 8)
+                                            .stroke(Color.gray, lineWidth: 1).frame(width:290, height: 40))
+                                
+                                Button {
+                                    if self.textFieldCount > 0 {
+                                        self.textFieldCount -= 1
+                                    }
+                                } label: {
+                                    Image("trash")
+                                        .overlay(RoundedRectangle(cornerRadius: 8).stroke(Color.gray, lineWidth: 1).frame(width:40,height:40))
+                                }
+                                
+                            }
+                            
+                            
+                        }
                         
-                    } label: {
-                        Text("+웹사이트 추가")
-                            .font(.system(size:12))
+                        Button {
+                            if self.textFieldCount < 2 {
+                                self.textFieldCount += 1
+                            }
+                        } label: {
+                            Text("+웹사이트 추가")
+                                .font(.system(size:12))
+                        }
+                        
+                        if textFieldCount == 2 {
+                            Text("웹사이트는 3개까지 추가 가능합니다")
+                                .foregroundColor(.red)
+                        }
+                        
+                    }
+                }
+                //네비게이션 바
+                .navigationBarTitleDisplayMode(.inline)
+                .toolbar{
+                    ToolbarItem(placement: .navigationBarLeading) {
+                        Button {
+                            
+                        } label: {
+                            Image(systemName: "arrow.left")
+                                .foregroundColor(.black)
+                        }
                     }
                     
-                }
-            }
-            .padding(.horizontal, 17.5)
-            
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar{
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Button {
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        Button {
+                            
+                        } label: {
+                            Text("저장")
+                        }
                         
-                    } label: {
-                        Image(systemName: "arrow.left")
-                            .foregroundColor(.black)
                     }
-                }
-                
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button {
-                        
-                    } label: {
-                        Text("저장")
-                    }
-
                 }
             }
         }
     }
-    
-    //MARK: - VIEWBUILDER
-    @ViewBuilder
-    func webSiteTextField() -> some View {
-        HStack {
-            TextField("SNS 또는 홈페이지를 연결해주세요.", text: $snsURL)
-                .frame(width: .infinity)
-                .textFieldStyle(.roundedBorder)
-            
-            Image(systemName: "trash")
-                .overlay(RoundedRectangle(cornerRadius: 8).stroke(Color.gray, lineWidth: 1).frame(width:40,height:40))
-        }
-    }
-    
-    //MARK: - FUNCTION
-    
 }
 
-struct MyViewBuilder {
-    static func buildBlock<Content: View>(@ViewBuilder _ content: () -> Content) -> some View {
-        return VStack {
-            content()
-        }
-    }
-}
 
+
+
+//MARK: - PREVIEW
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
