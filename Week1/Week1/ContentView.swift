@@ -78,7 +78,7 @@ struct ContentView: View {
                             RoundedRectangle(cornerRadius: 8, style: .continuous)
                                 .fill(.clear)
                                 .frame(width: 340, height: 52)
-                                .overlay(RoundedRectangle(cornerRadius: 8, style: .continuous).stroke(Color.black, lineWidth: 1))
+                                .overlay(RoundedRectangle(cornerRadius: 8, style: .continuous).stroke(Color("border"), lineWidth: 1))
                         }
                         
                         HStack {
@@ -86,6 +86,7 @@ struct ContentView: View {
                             
                             Text("\(vm.nickNameCounted) / 20")
                                 .font(.custom("NanumGothic-Regular", size: 12))
+                                .foregroundColor(Color("textCount"))
                         }
                     }
                     
@@ -101,7 +102,7 @@ struct ContentView: View {
                             RoundedRectangle(cornerRadius: 8, style: .continuous)
                                 .fill(.clear)
                                 .frame(width: 340, height: 52)
-                                .overlay(RoundedRectangle(cornerRadius: 8, style: .continuous).stroke(Color.black, lineWidth: 1))
+                                .overlay(RoundedRectangle(cornerRadius: 8, style: .continuous).stroke(Color("border"), lineWidth: 1))
                         }
                         
                         HStack {
@@ -109,6 +110,7 @@ struct ContentView: View {
                             
                             Text("\(vm.briefProfileCounted) / 20")
                                 .font(.system(size:12))
+                                .foregroundColor(Color("textCount"))
                         }
                         
                     }
@@ -137,7 +139,7 @@ struct ContentView: View {
                             RoundedRectangle(cornerRadius: 8, style: .continuous)
                                 .fill(.clear)
                                 .frame(width: 340, height: 200)
-                                .overlay(RoundedRectangle(cornerRadius: 8, style: .continuous).stroke(Color.black, lineWidth: 1))
+                                .overlay(RoundedRectangle(cornerRadius: 8, style: .continuous).stroke(Color("border"), lineWidth: 1))
                         }
    
                         
@@ -146,6 +148,7 @@ struct ContentView: View {
                             
                             Text("\(vm.selfDescriptionCounted) / 1000")
                                 .font(.system(size:12))
+                                .foregroundColor(Color("textCount")) 
                         }
                         .frame(width: 340, height: 18)
                     }
@@ -163,7 +166,7 @@ struct ContentView: View {
                             RoundedRectangle(cornerRadius: 8, style: .continuous)
                                 .fill(.clear)
                                 .frame(width: 340, height: 40)
-                                .overlay(RoundedRectangle(cornerRadius: 8, style: .continuous).stroke(Color.black, lineWidth: 1))
+                                .overlay(RoundedRectangle(cornerRadius: 8, style: .continuous).stroke(Color("border"), lineWidth: 1))
                         }
                         
                         VStack(spacing: 0) {
@@ -178,7 +181,7 @@ struct ContentView: View {
                                         RoundedRectangle(cornerRadius: 8, style: .continuous)
                                             .fill(.clear)
                                             .frame(width: 290, height: 40)
-                                            .overlay(RoundedRectangle(cornerRadius: 8, style: .continuous).stroke(Color.black, lineWidth: 1))
+                                            .overlay(RoundedRectangle(cornerRadius: 8, style: .continuous).stroke(Color("border"), lineWidth: 1))
                                     }
 
                                     Button {
