@@ -8,19 +8,22 @@
 import SwiftUI
 import PhotosUI
 import UIKit
+import Combine
 
 struct ContentView: View {
     //MARK: - PROPERTIES
-    @State var nickname : String = ""
-    @State var briefProfile : String = ""
-    @State var selfDescription : String = ""
-    @State var snsURL : String = ""
+    @ObservedObject var vm = ViewModel()
     
+    //웹사이트 파트
+    @State var snsURL : String = ""
     @State var textFieldCount = 0
     
-    @State var selectedItems : [PhotosPickerItem] = []
     
+    //포토피커
+    @State var selectedItems : [PhotosPickerItem] = []
     @State var showSelection : Bool = false
+    
+
     
     
     
@@ -68,7 +71,7 @@ struct ContentView: View {
                         Text("닉네임").font(.custom("NanumGothic-Bold", size: 16))
                         
                         ZStack {
-                            TextField("쩡대리", text: $nickname)
+                            TextField("쩡대리", text: $vm.nickName)
                                 .font(.custom("NanumGothic-Regular",size: 14))
                                 .padding(16)
                             
@@ -81,7 +84,7 @@ struct ContentView: View {
                         HStack {
                             Spacer()
                             
-                            Text("3 / 20")
+                            Text("\(vm.nickNameCounted) / 20")
                                 .font(.custom("NanumGothic-Regular", size: 12))
                         }
                     }
@@ -91,7 +94,7 @@ struct ContentView: View {
                     VStack(alignment: .leading, spacing: 10) {
                         Text("한 줄 프로필")
                         ZStack {
-                            TextField("자신을 표현할 한 줄 소개입니다.", text: $briefProfile)
+                            TextField("자신을 표현할 한 줄 소개입니다.", text: $vm.briefProfile)
                                 .font(.custom("NanumGothic-Regular",size: 14))
                                 .padding(16)
                             
@@ -104,7 +107,7 @@ struct ContentView: View {
                         HStack {
                             Spacer()
                             
-                            Text("0 / 20")
+                            Text("\(vm.briefProfileCounted) / 20")
                                 .font(.system(size:12))
                         }
                         
@@ -116,9 +119,19 @@ struct ContentView: View {
                         Text("자기소개")
                         
                         ZStack {
-                            TextField("다른 사람에게 나를 소개할 수 있도록 자신의 활동을 자세하게 적어주세요", text: $selfDescription, axis: .vertical)
+                            TextField("다른 사람에게 나를 소개할 수 있도록\n자신의 활동을 자세하게 적어주세요", text: $vm.selfDescription, axis: .vertical)
                                 .font(.custom("NanumGothic-Regular",size: 14))
-                                .padding(16)
+                                .frame(width: 308, height: 168, alignment: .top)
+                            
+                                .lineSpacing(10)
+                                .multilineTextAlignment(.leading)
+                                .lineLimit(2, reservesSpace: true)
+//
+//
+//                                .lineLimit(5, reservesSpace: true)
+ 
+
+
                             
                             
                             RoundedRectangle(cornerRadius: 8, style: .continuous)
@@ -126,18 +139,19 @@ struct ContentView: View {
                                 .frame(width: 340, height: 200)
                                 .overlay(RoundedRectangle(cornerRadius: 8, style: .continuous).stroke(Color.black, lineWidth: 1))
                         }
+   
                         
                         HStack {
                             Spacer()
                             
-                            Text("0 / 1000")
+                            Text("\(vm.selfDescriptionCounted) / 1000")
                                 .font(.system(size:12))
                         }
                         .frame(width: 340, height: 18)
                     }
                     
                     //웹사이트
-                    VStack(alignment: .leading, spacing: 0) {
+                    VStack(alignment: .leading, spacing: 10) {
                         Text("웹사이트 연결")
                         
                         ZStack {
@@ -152,7 +166,7 @@ struct ContentView: View {
                                 .overlay(RoundedRectangle(cornerRadius: 8, style: .continuous).stroke(Color.black, lineWidth: 1))
                         }
                         
-                        VStack(spacing: 10) {
+                        VStack(spacing: 0) {
                             ForEach(0..<textFieldCount, id: \.self) { _ in
                                 HStack(spacing: 10) {
                                     ZStack {
@@ -191,6 +205,7 @@ struct ContentView: View {
                         
                         if textFieldCount == 2 {
                             Text("웹사이트는 3개까지 추가 가능합니다")
+                                .font(.custom("NaumGothic", size: 12))
                                 .foregroundColor(.red)
                         }
                         

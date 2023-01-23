@@ -14,6 +14,8 @@
 		BFE300A8297D081E00C1F088 /* NanumGothic-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BFE300A5297D081D00C1F088 /* NanumGothic-Regular.ttf */; };
 		BFE300A9297D081E00C1F088 /* NanumGothic-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BFE300A6297D081D00C1F088 /* NanumGothic-Bold.ttf */; };
 		BFE300AA297D081E00C1F088 /* NanumGothic-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BFE300A7297D081E00C1F088 /* NanumGothic-ExtraBold.ttf */; };
+		BFE300AF297E991F00C1F088 /* TextCounterTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE300AE297E991F00C1F088 /* TextCounterTestView.swift */; };
+		BFE300B1297E9BBE00C1F088 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE300B0297E9BBE00C1F088 /* ViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		BFE300A6297D081D00C1F088 /* NanumGothic-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NanumGothic-Bold.ttf"; sourceTree = "<group>"; };
 		BFE300A7297D081E00C1F088 /* NanumGothic-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NanumGothic-ExtraBold.ttf"; sourceTree = "<group>"; };
 		BFE300AB297D084000C1F088 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		BFE300AE297E991F00C1F088 /* TextCounterTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextCounterTestView.swift; sourceTree = "<group>"; };
+		BFE300B0297E9BBE00C1F088 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +66,8 @@
 				BFE300A4297D081000C1F088 /* Fonts */,
 				BFC23943297CD9F4005EB2B1 /* Week1App.swift */,
 				BFC23945297CD9F4005EB2B1 /* ContentView.swift */,
+				BFE300B0297E9BBE00C1F088 /* ViewModel.swift */,
+				BFE300AE297E991F00C1F088 /* TextCounterTestView.swift */,
 				BFC23947297CD9F4005EB2B1 /* Assets.xcassets */,
 				BFC23949297CD9F4005EB2B1 /* Preview Content */,
 			);
@@ -159,7 +165,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BFE300AF297E991F00C1F088 /* TextCounterTestView.swift in Sources */,
 				BFC23946297CD9F4005EB2B1 /* ContentView.swift in Sources */,
+				BFE300B1297E9BBE00C1F088 /* ViewModel.swift in Sources */,
 				BFC23944297CD9F4005EB2B1 /* Week1App.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
