@@ -11,13 +11,14 @@
 		BF7C909D297FA1E400CAB2F5 /* Picker.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7C909C297FA1E400CAB2F5 /* Picker.swift */; };
 		BF7C90A3297FA94300CAB2F5 /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7C90A2297FA94300CAB2F5 /* Test.swift */; };
 		BF7C90A6297FAA7500CAB2F5 /* ProfileImageMod.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7C90A5297FAA7500CAB2F5 /* ProfileImageMod.swift */; };
+		BF7C90AC2980198300CAB2F5 /* Unbounded-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BF7C90AB2980198300CAB2F5 /* Unbounded-Bold.ttf */; };
+		BF7C90B029801C8900CAB2F5 /* NanumGothicExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BF7C90AD29801C8900CAB2F5 /* NanumGothicExtraBold.ttf */; };
+		BF7C90B129801C8900CAB2F5 /* NanumGothicBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BF7C90AE29801C8900CAB2F5 /* NanumGothicBold.ttf */; };
+		BF7C90B229801C8900CAB2F5 /* NanumGothicRegular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BF7C90AF29801C8900CAB2F5 /* NanumGothicRegular.ttf */; };
 		BFC23944297CD9F4005EB2B1 /* Week1App.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC23943297CD9F4005EB2B1 /* Week1App.swift */; };
 		BFC23946297CD9F4005EB2B1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC23945297CD9F4005EB2B1 /* ContentView.swift */; };
 		BFC23948297CD9F4005EB2B1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFC23947297CD9F4005EB2B1 /* Assets.xcassets */; };
 		BFC2394B297CD9F4005EB2B1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFC2394A297CD9F4005EB2B1 /* Preview Assets.xcassets */; };
-		BFE300A8297D081E00C1F088 /* NanumGothic-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BFE300A5297D081D00C1F088 /* NanumGothic-Regular.ttf */; };
-		BFE300A9297D081E00C1F088 /* NanumGothic-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BFE300A6297D081D00C1F088 /* NanumGothic-Bold.ttf */; };
-		BFE300AA297D081E00C1F088 /* NanumGothic-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BFE300A7297D081E00C1F088 /* NanumGothic-ExtraBold.ttf */; };
 		BFE300B1297E9BBE00C1F088 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE300B0297E9BBE00C1F088 /* ViewModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -26,14 +27,15 @@
 		BF7C909C297FA1E400CAB2F5 /* Picker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Picker.swift; sourceTree = "<group>"; };
 		BF7C90A2297FA94300CAB2F5 /* Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
 		BF7C90A5297FAA7500CAB2F5 /* ProfileImageMod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageMod.swift; sourceTree = "<group>"; };
+		BF7C90AB2980198300CAB2F5 /* Unbounded-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Unbounded-Bold.ttf"; sourceTree = "<group>"; };
+		BF7C90AD29801C8900CAB2F5 /* NanumGothicExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NanumGothicExtraBold.ttf; sourceTree = "<group>"; };
+		BF7C90AE29801C8900CAB2F5 /* NanumGothicBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NanumGothicBold.ttf; sourceTree = "<group>"; };
+		BF7C90AF29801C8900CAB2F5 /* NanumGothicRegular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NanumGothicRegular.ttf; sourceTree = "<group>"; };
 		BFC23940297CD9F4005EB2B1 /* Week1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Week1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFC23943297CD9F4005EB2B1 /* Week1App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Week1App.swift; sourceTree = "<group>"; };
 		BFC23945297CD9F4005EB2B1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		BFC23947297CD9F4005EB2B1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BFC2394A297CD9F4005EB2B1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		BFE300A5297D081D00C1F088 /* NanumGothic-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NanumGothic-Regular.ttf"; sourceTree = "<group>"; };
-		BFE300A6297D081D00C1F088 /* NanumGothic-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NanumGothic-Bold.ttf"; sourceTree = "<group>"; };
-		BFE300A7297D081E00C1F088 /* NanumGothic-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NanumGothic-ExtraBold.ttf"; sourceTree = "<group>"; };
 		BFE300AB297D084000C1F088 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		BFE300B0297E9BBE00C1F088 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -126,9 +128,10 @@
 		BFE300A4297D081000C1F088 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
-				BFE300A6297D081D00C1F088 /* NanumGothic-Bold.ttf */,
-				BFE300A7297D081E00C1F088 /* NanumGothic-ExtraBold.ttf */,
-				BFE300A5297D081D00C1F088 /* NanumGothic-Regular.ttf */,
+				BF7C90AE29801C8900CAB2F5 /* NanumGothicBold.ttf */,
+				BF7C90AD29801C8900CAB2F5 /* NanumGothicExtraBold.ttf */,
+				BF7C90AF29801C8900CAB2F5 /* NanumGothicRegular.ttf */,
+				BF7C90AB2980198300CAB2F5 /* Unbounded-Bold.ttf */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -191,11 +194,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BFE300AA297D081E00C1F088 /* NanumGothic-ExtraBold.ttf in Resources */,
-				BFE300A8297D081E00C1F088 /* NanumGothic-Regular.ttf in Resources */,
+				BF7C90B029801C8900CAB2F5 /* NanumGothicExtraBold.ttf in Resources */,
+				BF7C90AC2980198300CAB2F5 /* Unbounded-Bold.ttf in Resources */,
 				BFC2394B297CD9F4005EB2B1 /* Preview Assets.xcassets in Resources */,
+				BF7C90B229801C8900CAB2F5 /* NanumGothicRegular.ttf in Resources */,
 				BFC23948297CD9F4005EB2B1 /* Assets.xcassets in Resources */,
-				BFE300A9297D081E00C1F088 /* NanumGothic-Bold.ttf in Resources */,
+				BF7C90B129801C8900CAB2F5 /* NanumGothicBold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

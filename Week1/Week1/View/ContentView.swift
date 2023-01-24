@@ -33,7 +33,7 @@ struct ContentView: View {
                 ZStack {
                     vm.image!
                         .resizable()
-                        .scaledToFit()
+                        .scaledToFill()
                         .frame(width: 80, height: 80)
                         .clipShape(Circle())
                         .overlay(Circle().stroke(Color.white, lineWidth: 0.5))
@@ -81,12 +81,11 @@ struct ContentView: View {
                 VStack{
                     //닉네임
                     VStack(alignment: .leading, spacing: 10) {
-                        Text("닉네임").font(.custom("NanumGothic-Bold", size: 16))
+                        Text("닉네임").font(.custom("NanumGothicBold", size: 16))
                         
                         ZStack {
                             TextField("쩡대리", text: $vm.nickName)
-                                
-                                .font(.custom("NanumGothic-Regular",size: 14))
+                                .font(.custom("NanumGothicRegular",size: 14))
                                 .padding(16)
                                 .onTapGesture {
                                     self.focusedTextField = "nickName"
@@ -104,7 +103,7 @@ struct ContentView: View {
                             Spacer()
                             
                             Text("\(vm.nickNameCounted) / 20")
-                                .font(.custom("NanumGothic-Regular", size: 12))
+                                .font(.custom("NanumGothicRegular", size: 12))
                                 .foregroundColor(Color("textCount"))
                         }
                     }
@@ -113,9 +112,10 @@ struct ContentView: View {
                     //한 줄 프로필
                     VStack(alignment: .leading, spacing: 10) {
                         Text("한 줄 프로필")
+                            .font(.custom("NanumGothicBold", size: 16))
                         ZStack {
                             TextField("자신을 표현할 한 줄 소개입니다.", text: $vm.briefProfile)
-                                .font(.custom("NanumGothic-Regular",size: 14))
+                                .font(.custom("NanumGothicRegular",size: 14))
                                 .padding(16)
                                 .onTapGesture {
                                     self.focusedTextField = "profile"
@@ -141,10 +141,10 @@ struct ContentView: View {
                     //자기소개
                     VStack(alignment: .leading, spacing: 10) {
                         Text("자기소개")
-                        
+                            .font(.custom("NanumGothicBold", size: 16))
                         ZStack {
                             TextField("다른 사람에게 나를 소개할 수 있도록\n자신의 활동을 자세하게 적어주세요", text: $vm.selfDescription)
-                                .font(.custom("NanumGothic-Regular",size: 14))
+                                .font(.custom("NanumGothicRegular",size: 14))
                                 .frame(width: 308, height: 168, alignment: .top)
                                 .multilineTextAlignment(.leading)
                                 .lineLimit(2)
@@ -175,10 +175,10 @@ struct ContentView: View {
                     //웹사이트
                     VStack(alignment: .leading, spacing: 10) {
                         Text("웹사이트 연결")
-                        
+                            .font(.custom("NanumGothicBold", size: 16))
                         ZStack {
                             TextField("SNS 또는 홈페이지를 연결해주세요.", text: $snsURL)
-                                .font(.custom("NanumGothic-Regular",size: 14))
+                                .font(.custom("NanumGothicRegular",size: 14))
                                 .padding(16)
                                 .onTapGesture {
     
@@ -197,7 +197,7 @@ struct ContentView: View {
                                 HStack(spacing: 10) {
                                     ZStack {
                                         TextField("SNS 또는 홈페이지를 연결해주세요.", text: self.$textFields[index])
-                                            .font(.custom("NanumGothic-Regular",size: 14))
+                                            .font(.custom("NanumGothicRegular",size: 14))
                                             .padding(24)
                                             .onTapGesture {
                                                 self.focusedTextField = String(index)
@@ -278,6 +278,8 @@ struct ContentView: View {
                             
                         } label: {
                             Text("저장")
+                                .font(.custom("NaumGothicRegular ", size: 16))
+                                
                         }
                         
                     }
