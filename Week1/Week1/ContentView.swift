@@ -17,13 +17,15 @@ struct ContentView: View {
     //웹사이트 파트
     @State var snsURL : String = ""
     @State var textFieldCount = 0
+    @State var textFields = [String]()
+    @State var showText = false
     
     
     //포토피커
     @State var selectedItems : [PhotosPickerItem] = []
     @State var showSelection : Bool = false
     
-
+    
     
     
     
@@ -128,12 +130,12 @@ struct ContentView: View {
                                 .lineSpacing(10)
                                 .multilineTextAlignment(.leading)
                                 .lineLimit(2, reservesSpace: true)
-//
-//
-//                                .lineLimit(5, reservesSpace: true)
- 
-
-
+                            //
+                            //
+                            //                                .lineLimit(5, reservesSpace: true)
+                            
+                            
+                            
                             
                             
                             RoundedRectangle(cornerRadius: 8, style: .continuous)
@@ -141,14 +143,14 @@ struct ContentView: View {
                                 .frame(width: 340, height: 200)
                                 .overlay(RoundedRectangle(cornerRadius: 8, style: .continuous).stroke(Color("border"), lineWidth: 1))
                         }
-   
+                        
                         
                         HStack {
                             Spacer()
                             
                             Text("\(vm.selfDescriptionCounted) / 1000")
                                 .font(.system(size:12))
-                                .foregroundColor(Color("textCount")) 
+                                .foregroundColor(Color("textCount"))
                         }
                         .frame(width: 340, height: 18)
                     }
@@ -170,10 +172,10 @@ struct ContentView: View {
                         }
                         
                         VStack(spacing: 0) {
-                            ForEach(0..<textFieldCount, id: \.self) { _ in
+                            ForEach(0..<textFields.count, id: \.self) { index in
                                 HStack(spacing: 10) {
                                     ZStack {
-                                        TextField("SNS 또는 홈페이지를 연결해주세요.", text: $snsURL)
+                                        TextField("SNS 또는 홈페이지를 연결해주세요.", text: self.$textFields[index])
                                             .font(.custom("NanumGothic-Regular",size: 14))
                                             .padding(24)
                                         
@@ -183,11 +185,15 @@ struct ContentView: View {
                                             .frame(width: 290, height: 40)
                                             .overlay(RoundedRectangle(cornerRadius: 8, style: .continuous).stroke(Color("border"), lineWidth: 1))
                                     }
-
+                                    
                                     Button {
-                                        if self.textFieldCount > 0 {
-                                            self.textFieldCount -= 1
+                                        if self.textFields.count > 0 {
+                                            self.textFields.removeLast()
+                                            
+                                            self.showText = false
                                         }
+                                        
+                                        print(showText)
                                     } label: {
                                         Image("trash")
                                             .overlay(RoundedRectangle(cornerRadius: 8).stroke(Color.gray, lineWidth: 1).frame(width:40,height:40))
@@ -199,17 +205,33 @@ struct ContentView: View {
                         }
                         
                         Button {
-                            if self.textFieldCount < 2 {
-                                self.textFieldCount += 1
+                            if self.textFields.count < 2 {
+                                self.textFields.append("")
                             }
+                            
+                            else {
+                                self.showText = true
+                            }
+                            
+                            print(showText)
+                            
                         } label: {
                             Text("+웹사이트 추가")
-                            .font(.custom("NanumGothic", size: 12))                        }
+                                .font(.custom("NanumGothic", size: 12))
+                            
+                        }
+                        .onTapGesture {
+                            if self.textFields.count == 2 {
+                                self.showText.toggle()
+                            }
+                        }
                         
-                        if textFieldCount == 2 {
+                        if showText == true {
                             Text("웹사이트는 3개까지 추가 가능합니다")
                                 .font(.custom("NaumGothic", size: 12))
                                 .foregroundColor(.red)
+                        } else {
+                            Text("")
                         }
                         
                     }
