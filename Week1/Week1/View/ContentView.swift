@@ -21,15 +21,6 @@ struct ContentView: View {
     @State var showText = false
     
     
-    //포토피커
-    @State var selectedItems : [PhotosPickerItem] = []
-    @State var showSelection : Bool = false
-    
-    
-    
-    
-    
-    
     //MARK: - BODY
     var body: some View {
         NavigationView {
@@ -37,8 +28,12 @@ struct ContentView: View {
                 
                 //프로필 이미지
                 ZStack {
-                    Image("profile")
-                        .frame(width: 80, height:80)
+                    vm.image!
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 80, height: 80)
+                        .clipShape(Circle())
+                        .overlay(Circle().stroke(Color.white, lineWidth: 0.5))
                         .padding(.top, 16)
                         .padding(.horizontal, 147.5)
                     
@@ -49,23 +44,36 @@ struct ContentView: View {
                         .frame(width:13.33,height:12)
                         .background(Circle().fill(Color.blue).frame(width:24,height:24))
                         .offset(x: 30, y: 35)
+                
                 }
-                .onTapGesture {
-                    showSelection = true
+                .onTapGesture(perform: {
+                    vm.presentedActionSheet = true
+                })
+            
+                .sheet(isPresented: $vm.presentImagePicker, content: {
+                    SUImagePickerView(sourceType: vm.presentCamera ? .camera : .photoLibrary, image: $vm.image, isPresented: $vm.presentImagePicker)
+                })
+            
+            
+            
+                .actionSheet(isPresented: $vm.presentedActionSheet) {
+                    ActionSheet(title: Text(""), buttons:[
+                        .default(Text("카메라")) {
+                            vm.presentImagePicker = true
+                            vm.presentCamera = true
+                        },
+                        .default(Text("앨범")) {
+                            vm.presentImagePicker = true
+                            vm.presentCamera = false
+                        },
+                        .cancel()])
                 }
-                .confirmationDialog("", isPresented: $showSelection) {
-                    Button {
-                        
-                    } label: {
-                        Text("카메라")
-                    }
-                    
-                    Button {
-                        
-                    } label: {
-                        Text("앨범")
-                    }
-                }
+                
+                
+                
+                
+                
+                
                 
                 VStack{
                     //닉네임
@@ -123,16 +131,18 @@ struct ContentView: View {
                         Text("자기소개")
                         
                         ZStack {
-                            TextField("다른 사람에게 나를 소개할 수 있도록\n자신의 활동을 자세하게 적어주세요", text: $vm.selfDescription, axis: .vertical)
+                            TextField("다른 사람에게 나를 소개할 수 있도록\n자신의 활동을 자세하게 적어주세요", text: $vm.selfDescription)
                                 .font(.custom("NanumGothic-Regular",size: 14))
                                 .frame(width: 308, height: 168, alignment: .top)
-                            
-                                .lineSpacing(10)
                                 .multilineTextAlignment(.leading)
-                                .lineLimit(2, reservesSpace: true)
-                            //
-                            //
-                            //                                .lineLimit(5, reservesSpace: true)
+                                .lineLimit(2)
+                            
+                            //                                .lineSpacing(10)
+                            
+                            ////                                .lineLimit(2, reservesSpace: true)
+                            //                            //
+                            //                            //
+                            //                            //                                .lineLimit(5, reservesSpace: true)
                             
                             
                             
@@ -261,9 +271,9 @@ struct ContentView: View {
             }
             
         }
-        
     }
 }
+
 
 
 

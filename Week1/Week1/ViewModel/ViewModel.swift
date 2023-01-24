@@ -9,6 +9,18 @@ import SwiftUI
 import Combine
 
 class ViewModel: ObservableObject {
+    //MARK: - PROPERTIES
+    
+    //Profile Image Properties
+
+    @Published var image : Image? = Image("profile")
+    @Published var presentImagePicker = false
+    @Published var presentCamera = false
+    @Published var presentedActionSheet = false
+
+
+    
+    //TextField Properties
     @Published var nickNameCounted = "0"
     @Published var nickName = "" {
         didSet {
@@ -29,6 +41,8 @@ class ViewModel: ObservableObject {
             selfDescriptionCounted = String(selfDescription.count)
         }
     }
+    
+    
     
 }
 
