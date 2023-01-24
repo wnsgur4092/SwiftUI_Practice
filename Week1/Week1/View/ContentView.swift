@@ -20,6 +20,9 @@ struct ContentView: View {
     @State var textFields = [String]()
     @State var showText = false
     
+
+    @State var focusedTextField : String = ""
+
     
     //MARK: - BODY
     var body: some View {
@@ -82,14 +85,20 @@ struct ContentView: View {
                         
                         ZStack {
                             TextField("쩡대리", text: $vm.nickName)
+                                
                                 .font(.custom("NanumGothic-Regular",size: 14))
                                 .padding(16)
+                                .onTapGesture {
+                                    self.focusedTextField = "nickName"
+                                }
+                            
                             
                             RoundedRectangle(cornerRadius: 8, style: .continuous)
                                 .fill(.clear)
                                 .frame(width: 340, height: 52)
-                                .overlay(RoundedRectangle(cornerRadius: 8, style: .continuous).stroke(Color("border"), lineWidth: 1))
+                                .overlay(RoundedRectangle(cornerRadius: 8, style: .continuous).stroke(focusedTextField == "nickName" ? Color.blue : Color("border"), lineWidth: 1))
                         }
+                        
                         
                         HStack {
                             Spacer()
@@ -108,11 +117,14 @@ struct ContentView: View {
                             TextField("자신을 표현할 한 줄 소개입니다.", text: $vm.briefProfile)
                                 .font(.custom("NanumGothic-Regular",size: 14))
                                 .padding(16)
+                                .onTapGesture {
+                                    self.focusedTextField = "profile"
+                                }
                             
                             RoundedRectangle(cornerRadius: 8, style: .continuous)
                                 .fill(.clear)
                                 .frame(width: 340, height: 52)
-                                .overlay(RoundedRectangle(cornerRadius: 8, style: .continuous).stroke(Color("border"), lineWidth: 1))
+                                .overlay(RoundedRectangle(cornerRadius: 8, style: .continuous).stroke(focusedTextField == "profile" ? Color.blue : Color("border"), lineWidth: 1))
                         }
                         
                         HStack {
@@ -136,14 +148,9 @@ struct ContentView: View {
                                 .frame(width: 308, height: 168, alignment: .top)
                                 .multilineTextAlignment(.leading)
                                 .lineLimit(2)
-                            
-                            //                                .lineSpacing(10)
-                            
-                            ////                                .lineLimit(2, reservesSpace: true)
-                            //                            //
-                            //                            //
-                            //                            //                                .lineLimit(5, reservesSpace: true)
-                            
+                                .onTapGesture {
+                                    self.focusedTextField = "description"
+                                }
                             
                             
                             
@@ -151,7 +158,7 @@ struct ContentView: View {
                             RoundedRectangle(cornerRadius: 8, style: .continuous)
                                 .fill(.clear)
                                 .frame(width: 340, height: 200)
-                                .overlay(RoundedRectangle(cornerRadius: 8, style: .continuous).stroke(Color("border"), lineWidth: 1))
+                                .overlay(RoundedRectangle(cornerRadius: 8, style: .continuous).stroke(focusedTextField == "description" ? Color.blue : Color("border"), lineWidth: 1))
                         }
                         
                         
@@ -173,12 +180,16 @@ struct ContentView: View {
                             TextField("SNS 또는 홈페이지를 연결해주세요.", text: $snsURL)
                                 .font(.custom("NanumGothic-Regular",size: 14))
                                 .padding(16)
+                                .onTapGesture {
+    
+                                    self.focusedTextField = "website"
+                                }
                             
                             
                             RoundedRectangle(cornerRadius: 8, style: .continuous)
                                 .fill(.clear)
                                 .frame(width: 340, height: 40)
-                                .overlay(RoundedRectangle(cornerRadius: 8, style: .continuous).stroke(Color("border"), lineWidth: 1))
+                                .overlay(RoundedRectangle(cornerRadius: 8, style: .continuous).stroke(focusedTextField == "website" ? Color.blue : Color("border"), lineWidth: 1))
                         }
                         
                         VStack(spacing: 0) {
@@ -188,12 +199,15 @@ struct ContentView: View {
                                         TextField("SNS 또는 홈페이지를 연결해주세요.", text: self.$textFields[index])
                                             .font(.custom("NanumGothic-Regular",size: 14))
                                             .padding(24)
+                                            .onTapGesture {
+                                                self.focusedTextField = String(index)
+                                            }
                                         
                                         
                                         RoundedRectangle(cornerRadius: 8, style: .continuous)
                                             .fill(.clear)
                                             .frame(width: 290, height: 40)
-                                            .overlay(RoundedRectangle(cornerRadius: 8, style: .continuous).stroke(Color("border"), lineWidth: 1))
+                                            .overlay(RoundedRectangle(cornerRadius: 8, style: .continuous).stroke(focusedTextField == String(index) ? Color.blue : Color("border"), lineWidth: 1))
                                     }
                                     
                                     Button {
@@ -206,7 +220,7 @@ struct ContentView: View {
                                         print(showText)
                                     } label: {
                                         Image("trash")
-                                            .overlay(RoundedRectangle(cornerRadius: 8).stroke(Color.gray, lineWidth: 1).frame(width:40,height:40))
+                                            .overlay(RoundedRectangle(cornerRadius: 8).stroke(Color("border"), lineWidth: 1).frame(width:40,height:40))
                                     }
                                     
                                 }
