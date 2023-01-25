@@ -16,12 +16,28 @@ struct ContentView: View {
     
     //웹사이트 파트
     @State var snsURL : String = ""
+    @State var secondSnsURL : String = ""
+    @State var thirdSnsURL : String = ""
     @State var textFieldCount = 0
     @State var textFields = [String]()
     @State var showText = false
     
-
+    @State var text : String = ""
+    
+    
     @State var focusedTextField : String = ""
+    
+    @State private var secondIsVisible = false
+    @State private var thirdIsVisible = false
+    
+    enum Field : Hashable {
+        case nickameField
+        case profileField
+        case introduceField
+        case websiteField
+    }
+    
+    @FocusState private var focusedField : Field?
 
     
     //MARK: - BODY
@@ -47,18 +63,18 @@ struct ContentView: View {
                         .frame(width:13.33,height:12)
                         .background(Circle().fill(Color.blue).frame(width:24,height:24))
                         .offset(x: 30, y: 35)
-                
+                    
                 }
                 .onTapGesture(perform: {
                     vm.presentedActionSheet = true
                 })
-            
+                
                 .sheet(isPresented: $vm.presentImagePicker, content: {
                     SUImagePickerView(sourceType: vm.presentCamera ? .camera : .photoLibrary, image: $vm.image, isPresented: $vm.presentImagePicker)
                 })
-            
-            
-            
+                
+                
+                
                 .actionSheet(isPresented: $vm.presentedActionSheet) {
                     ActionSheet(title: Text(""), buttons:[
                         .default(Text("카메라")) {
@@ -87,17 +103,18 @@ struct ContentView: View {
                             TextField("쩡대리", text: $vm.nickName)
                                 .font(.custom("NanumGothicRegular",size: 14))
                                 .padding(16)
+                                
                                 .onTapGesture {
-                                    self.focusedTextField = "nickName"
+                                    self.focusedField = .nickameField
                                 }
+                                .focused($focusedField, equals: .nickameField )
                             
                             
-                            RoundedRectangle(cornerRadius: 8, style: .continuous)
-                                .fill(.clear)
+                            RoundedRectangle(cornerRadius: 8)
+                                .stroke(focusedField == .nickameField ? Color("focusedBorder") : Color("border"), lineWidth: 1)
                                 .frame(width: 340, height: 52)
-                                .overlay(RoundedRectangle(cornerRadius: 8, style: .continuous).stroke(focusedTextField == "nickName" ? Color.blue : Color("border"), lineWidth: 1))
                         }
-                        
+
                         
                         HStack {
                             Spacer()
@@ -118,13 +135,14 @@ struct ContentView: View {
                                 .font(.custom("NanumGothicRegular",size: 14))
                                 .padding(16)
                                 .onTapGesture {
-                                    self.focusedTextField = "profile"
+                                    self.focusedField = .profileField
                                 }
+                                .focused($focusedField , equals : .profileField)
                             
-                            RoundedRectangle(cornerRadius: 8, style: .continuous)
-                                .fill(.clear)
+                            RoundedRectangle(cornerRadius: 8)
+                                .stroke(focusedField == .profileField ? Color("focusedBorder") : Color("border"), lineWidth: 1)
                                 .frame(width: 340, height: 52)
-                                .overlay(RoundedRectangle(cornerRadius: 8, style: .continuous).stroke(focusedTextField == "profile" ? Color.blue : Color("border"), lineWidth: 1))
+                            
                         }
                         
                         HStack {
@@ -138,29 +156,41 @@ struct ContentView: View {
                     }
                     
                     
+                    
+                    
                     //자기소개
                     VStack(alignment: .leading, spacing: 10) {
                         Text("자기소개")
                             .font(.custom("NanumGothicBold", size: 16))
-                        ZStack {
-                            TextField("다른 사람에게 나를 소개할 수 있도록\n자신의 활동을 자세하게 적어주세요", text: $vm.selfDescription)
-                                .font(.custom("NanumGothicRegular",size: 14))
-                                .frame(width: 308, height: 168, alignment: .top)
-                                .multilineTextAlignment(.leading)
-                                .lineLimit(2)
-                                .onTapGesture {
-                                    self.focusedTextField = "description"
-                                }
-                            
-                            
-                            
-                            
-                            RoundedRectangle(cornerRadius: 8, style: .continuous)
-                                .fill(.clear)
-                                .frame(width: 340, height: 200)
-                                .overlay(RoundedRectangle(cornerRadius: 8, style: .continuous).stroke(focusedTextField == "description" ? Color.blue : Color("border"), lineWidth: 1))
-                        }
                         
+                        ZStack(alignment: .topLeading) {
+                            RoundedRectangle(cornerRadius: 8).stroke(focusedField == .introduceField ? Color("focusedBorder") : Color("border"), lineWidth: 1)
+                            if text.isEmpty {
+                                Text("다른 사람에게 나를 소개할 수 있도록\n자신의 활동을 자세하게 적어주세요")
+                                    .padding(16)
+                                    .offset(x:6, y: 7)
+                                    .zIndex(1)
+                                    .foregroundColor(Color("placeholder"))
+                                    .font(.custom("NanumGothicRegular",size: 14))
+                                    .lineSpacing(10)
+                                    .frame(width: 340, height: 200, alignment: .topLeading)
+                                //                                    .background(Color.yellow)
+                                    .onTapGesture {
+                                        self.focusedField = .introduceField
+                                    }
+
+                                
+                            }
+                            
+                            TextEditor(text: $text)
+                                .focused($focusedField, equals: .introduceField)
+                                .font(.custom("NanumGothicRegular",size: 14))
+                                .padding(16)
+                                .frame(width: 340, height: 200)
+                            
+                            
+                            
+                        }
                         
                         HStack {
                             Spacer()
@@ -174,6 +204,7 @@ struct ContentView: View {
                     
                     //웹사이트
                     VStack(alignment: .leading, spacing: 10) {
+                        //첫번째 웹사이트
                         Text("웹사이트 연결")
                             .font(.custom("NanumGothicBold", size: 16))
                         ZStack {
@@ -181,16 +212,18 @@ struct ContentView: View {
                                 .font(.custom("NanumGothicRegular",size: 14))
                                 .padding(16)
                                 .onTapGesture {
-    
-                                    self.focusedTextField = "website"
+                                    
+                                    self.focusedField = .websiteField
                                 }
+                                .focused($focusedField, equals: .websiteField)
                             
-                            
-                            RoundedRectangle(cornerRadius: 8, style: .continuous)
-                                .fill(.clear)
+                            RoundedRectangle(cornerRadius: 8)
+                                .stroke(focusedField == .websiteField ? Color("focusedBorder") : Color("border"), lineWidth: 1)
                                 .frame(width: 340, height: 40)
-                                .overlay(RoundedRectangle(cornerRadius: 8, style: .continuous).stroke(focusedTextField == "website" ? Color.blue : Color("border"), lineWidth: 1))
+                            
                         }
+                        
+                        
                         
                         VStack(spacing: 0) {
                             ForEach(0..<textFields.count, id: \.self) { index in
@@ -260,6 +293,7 @@ struct ContentView: View {
                         
                     }
                 }
+                .padding(.top, 24)
                 .padding(.horizontal, 17.5)
                 //네비게이션 바
                 .navigationBarTitleDisplayMode(.inline)
@@ -279,7 +313,7 @@ struct ContentView: View {
                         } label: {
                             Text("저장")
                                 .font(.custom("NaumGothicRegular ", size: 16))
-                                
+                            
                         }
                         
                     }

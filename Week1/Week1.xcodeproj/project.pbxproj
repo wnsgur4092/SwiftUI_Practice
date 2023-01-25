@@ -15,6 +15,7 @@
 		BF7C90B029801C8900CAB2F5 /* NanumGothicExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BF7C90AD29801C8900CAB2F5 /* NanumGothicExtraBold.ttf */; };
 		BF7C90B129801C8900CAB2F5 /* NanumGothicBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BF7C90AE29801C8900CAB2F5 /* NanumGothicBold.ttf */; };
 		BF7C90B229801C8900CAB2F5 /* NanumGothicRegular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BF7C90AF29801C8900CAB2F5 /* NanumGothicRegular.ttf */; };
+		BF7C90B52980DCB400CAB2F5 /* Focuser in Frameworks */ = {isa = PBXBuildFile; productRef = BF7C90B42980DCB400CAB2F5 /* Focuser */; };
 		BFC23944297CD9F4005EB2B1 /* Week1App.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC23943297CD9F4005EB2B1 /* Week1App.swift */; };
 		BFC23946297CD9F4005EB2B1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC23945297CD9F4005EB2B1 /* ContentView.swift */; };
 		BFC23948297CD9F4005EB2B1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFC23947297CD9F4005EB2B1 /* Assets.xcassets */; };
@@ -45,6 +46,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF7C90B52980DCB400CAB2F5 /* Focuser in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -152,6 +154,9 @@
 			dependencies = (
 			);
 			name = Week1;
+			packageProductDependencies = (
+				BF7C90B42980DCB400CAB2F5 /* Focuser */,
+			);
 			productName = Week1;
 			productReference = BFC23940297CD9F4005EB2B1 /* Week1.app */;
 			productType = "com.apple.product-type.application";
@@ -180,6 +185,9 @@
 				Base,
 			);
 			mainGroup = BFC23937297CD9F4005EB2B1;
+			packageReferences = (
+				BF7C90B32980DCB400CAB2F5 /* XCRemoteSwiftPackageReference "swift-focuser" */,
+			);
 			productRefGroup = BFC23941297CD9F4005EB2B1 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -355,7 +363,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -387,7 +395,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -423,6 +431,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		BF7C90B32980DCB400CAB2F5 /* XCRemoteSwiftPackageReference "swift-focuser" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/art-technologies/swift-focuser.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.2.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		BF7C90B42980DCB400CAB2F5 /* Focuser */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BF7C90B32980DCB400CAB2F5 /* XCRemoteSwiftPackageReference "swift-focuser" */;
+			productName = Focuser;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = BFC23938297CD9F4005EB2B1 /* Project object */;
 }
