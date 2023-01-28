@@ -23,13 +23,13 @@ struct ContentView: View {
     @State var showText = false
     
     @State var text : String = ""
-
+    
     
     
     @State var textFields = [String](repeating: "", count: 2)
     @State var showMaxLimit = false
     
-
+    
     
     //FOCUS
     @State var isNameFoucsed : Bool = false
@@ -103,8 +103,8 @@ struct ContentView: View {
                         Text("닉네임").font(.custom("NanumGothicBold", size: 16))
                         
                         ZStack {
-//                            TextField("쩡대리", text: $vm.nickName)
-                            FirstResponderTextField(text: $vm.nickName, isFocused: $isNameFoucsed, placeholder: "쩡대리", font: UIFont(name: "NanumGothicBold", size: 14))
+                            //                            TextField("쩡대리", text: $vm.nickName)
+                            FirstResponderTextField(text: $vm.nickName, placeholder: "쩡대리", font: UIFont(name: "NanumGothicBold", size: 14), isFocused: $isNameFoucsed)
                                 .foregroundColor(Color("text"))
                                 .padding(16)
                                 .frame(width: 340, height: 52)
@@ -129,12 +129,12 @@ struct ContentView: View {
                         Text("한 줄 프로필")
                             .font(.custom("NanumGothicBold", size: 16))
                         ZStack {
-                            FirstResponderTextField(text: $vm.briefProfile, isFocused: $isProfileFoucsed, placeholder: "자신을 표현할 한 줄 소개입니다.", font: UIFont(name: "NanumGothicBold", size: 14))
+                            FirstResponderTextField(text: $vm.briefProfile, placeholder: "자신을 표현할 한 줄 소개입니다.", font: UIFont(name: "NanumGothicBold", size: 14), isFocused: $isProfileFoucsed)
                             
                                 .foregroundColor(Color("text"))
                                 .padding(16)
                                 .frame(width: 340, height: 52)
-                                
+                            
                             
                             
                             
@@ -163,26 +163,32 @@ struct ContentView: View {
                             .font(.custom("NanumGothicBold", size: 16))
                         
                         ZStack(alignment: .topLeading) {
-                            RoundedRectangle(cornerRadius: 8).stroke( Color("border"), lineWidth: 1)
+                            RoundedRectangle(cornerRadius: 8).stroke(isDescriptionFocused ? Color.blue : Color("border"), lineWidth: 1)
                             if text.isEmpty {
+                                
                                 Text("다른 사람에게 나를 소개할 수 있도록\n자신의 활동을 자세하게 적어주세요")
                                     .padding(16)
-                                    .offset(x:6, y: 7)
-                                    .zIndex(1)
-                                    .foregroundColor(Color("placeholder"))
-                                    .font(.custom("NanumGothicRegular",size: 14))
-                                    .lineSpacing(10)
+                                    .zIndex(2)
                                     .frame(width: 340, height: 200, alignment: .topLeading)
+                                    .background(Color.yellow.opacity(0.2))
+                                    .disabled(true)
+                                    .foregroundColor(Color("placeholder"))
+                                    .font(.custom("NanumGothicBold",size: 14))
+                                    .lineSpacing(10)
+                                    .onTapGesture {
+                                        print("---->Touched")
+                                    }
+                                
                             }
                             
-                            TextEditor(text: $text)
-                                .font(.custom("NanumGothicRegular",size: 14))
+                            
+                            FirstResponderTextEditor(text: $text, font: UIFont(name: "NanumGothicBold", size: 14), isFocused: $isDescriptionFocused)
+                                .zIndex(1)
                                 .padding(16)
-                                .frame(width: 340, height: 200)
-                            
-                            
+                                .frame(width: 340, height: 200, alignment: .topLeading)
                             
                         }
+                        
                         
                         HStack {
                             Spacer()
@@ -200,7 +206,7 @@ struct ContentView: View {
                         Text("웹사이트 연결")
                             .font(.custom("NanumGothicBold", size: 16))
                         ZStack {
-                            FirstResponderTextField(text: $snsURL, isFocused: $isDescriptionFocused, placeholder: "SNS 또는 홈페이지를 연결해주세요.", font: UIFont(name: "NanumGothicBold", size: 14))
+                            FirstResponderTextField(text: $snsURL, placeholder: "SNS 또는 홈페이지를 연결해주세요.", font: UIFont(name: "NanumGothicBold", size: 14), isFocused: $isWebsiteFocused)
                                 .foregroundColor(Color("text"))
                                 .padding(16)
                                 .onTapGesture {
@@ -208,7 +214,7 @@ struct ContentView: View {
                                 }
                             
                             RoundedRectangle(cornerRadius: 8)
-                                .stroke(isDescriptionFocused ? Color.blue : Color("border"), lineWidth: 1)
+                                .stroke(isWebsiteFocused ? Color.blue : Color("border"), lineWidth: 1)
                                 .frame(width: 340, height: 40)
                             
                         }
@@ -313,33 +319,33 @@ struct ContentView: View {
 
 struct FirstResponderTextField : UIViewRepresentable {
     @Binding var text : String
-    @Binding var isFocused: Bool
     let placeholder : String
     let font: UIFont?
+    @Binding var isFocused: Bool
     
     
     class Coordinator : NSObject, UITextFieldDelegate {
         @Binding var text : String
-        @Binding var isFocused: Bool
+        @Binding var isFocused : Bool
         var becameFirstResponder = false
         
-        init(text: Binding<String>, isFocused: Binding<Bool>) {
+        init(text: Binding<String>, isFocused : Binding<Bool>){
             self._text = text
             self._isFocused = isFocused
-        }
-        func textFieldDidBeginEditing(_ textField: UITextField) {
-            self.isFocused = true
-        }
-        func textFieldDidEndEditing(_ textField: UITextField) {
-            self.isFocused = false
         }
         func textFieldDidChangeSelection(_ textField: UITextField) {
             text = textField.text ?? ""
         }
+        func textFieldDidBeginEditing(_ textField: UITextField) {
+            isFocused = true
+        }
+        func textFieldDidEndEditing(_ textField: UITextField) {
+            isFocused = false
+        }
     }
     
     func makeCoordinator() -> Coordinator {
-        return Coordinator(text: $text, isFocused: $isFocused)
+        return Coordinator(text: $text, isFocused : $isFocused)
     }
     
     func makeUIView(context: Context) -> UITextField {
@@ -359,6 +365,72 @@ struct FirstResponderTextField : UIViewRepresentable {
         }
     }
 }
+
+
+
+
+struct FirstResponderTextEditor: UIViewRepresentable {
+    @Binding var text: String
+    let font: UIFont?
+    @Binding var isFocused: Bool
+    
+    
+    class Coordinator: NSObject, UITextViewDelegate {
+        @Binding var text: String
+        @Binding var isFocused: Bool
+        var becameFirstResponder = false
+        
+        init(text: Binding<String>, isFocused: Binding<Bool>) {
+            self._text = text
+            self._isFocused = isFocused
+        }
+        
+        func textViewDidChange(_ textView: UITextView) {
+            text = textView.text
+        }
+        
+        func textViewDidBeginEditing(_ textView: UITextView) {
+            isFocused = true
+        }
+        
+        func textViewDidEndEditing(_ textView: UITextView) {
+            isFocused = false
+        }
+    }
+    
+    func makeCoordinator() -> Coordinator {
+        return Coordinator(text: $text, isFocused: $isFocused)
+    }
+    
+    func makeUIView(context: Context) -> UITextView {
+        let textView = UITextView()
+        textView.delegate = context.coordinator
+        textView.text = text
+        textView.textContainer.lineFragmentPadding = 0
+        if let font = font {
+            textView.font = font
+        }
+        return textView
+    }
+    
+    func updateUIView(_ uiView: UITextView, context: Context) {
+        if context.coordinator.becameFirstResponder {
+            uiView.becomeFirstResponder()
+            context.coordinator.becameFirstResponder = false
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 
