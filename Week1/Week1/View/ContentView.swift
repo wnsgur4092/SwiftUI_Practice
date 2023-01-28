@@ -19,14 +19,27 @@ struct ContentView: View {
     @State var secondSnsURL : String = ""
     @State var thirdSnsURL : String = ""
     @State var textFieldCount = 0
-
+    
     @State var showText = false
     
     @State var text : String = ""
 
     
+    
     @State var textFields = [String](repeating: "", count: 2)
     @State var showMaxLimit = false
+    
+
+    
+    //FOCUS
+    @State var isNameFoucsed : Bool = false
+    @State var isProfileFoucsed : Bool = false
+    @State var isDescriptionFocused : Bool = false
+    @State var isWebsiteFocused : Bool = false
+    
+    
+    
+    @State var focusedTextField = -1
     
     
     
@@ -90,17 +103,13 @@ struct ContentView: View {
                         Text("닉네임").font(.custom("NanumGothicBold", size: 16))
                         
                         ZStack {
-                            TextField("쩡대리", text: $vm.nickName)
-                                .font(.custom("NanumGothicRegular",size: 14))
+//                            TextField("쩡대리", text: $vm.nickName)
+                            FirstResponderTextField(text: $vm.nickName, isFocused: $isNameFoucsed, placeholder: "쩡대리", font: UIFont(name: "NanumGothicBold", size: 14))
+                                .foregroundColor(Color("text"))
                                 .padding(16)
-                            
-                                .onTapGesture {
-                                    
-                                }
-                            
-                            
+                                .frame(width: 340, height: 52)
                             RoundedRectangle(cornerRadius: 8)
-                                .stroke(Color("border"), lineWidth: 1)
+                                .stroke(isNameFoucsed ? Color.blue : Color("border"), lineWidth: 1)
                                 .frame(width: 340, height: 52)
                         }
                         
@@ -120,16 +129,17 @@ struct ContentView: View {
                         Text("한 줄 프로필")
                             .font(.custom("NanumGothicBold", size: 16))
                         ZStack {
-                            TextField("자신을 표현할 한 줄 소개입니다.", text: $vm.briefProfile)
-                                .font(.custom("NanumGothicRegular",size: 14))
+                            FirstResponderTextField(text: $vm.briefProfile, isFocused: $isProfileFoucsed, placeholder: "자신을 표현할 한 줄 소개입니다.", font: UIFont(name: "NanumGothicBold", size: 14))
+                            
+                                .foregroundColor(Color("text"))
                                 .padding(16)
-                                .onTapGesture {
-                                    
-                                }
+                                .frame(width: 340, height: 52)
+                                
+                            
                             
                             
                             RoundedRectangle(cornerRadius: 8)
-                                .stroke(Color("border"), lineWidth: 1)
+                                .stroke(isProfileFoucsed ? Color.blue : Color("border"), lineWidth: 1)
                                 .frame(width: 340, height: 52)
                             
                         }
@@ -190,15 +200,15 @@ struct ContentView: View {
                         Text("웹사이트 연결")
                             .font(.custom("NanumGothicBold", size: 16))
                         ZStack {
-                            TextField("SNS 또는 홈페이지를 연결해주세요.", text: $snsURL)
-                                .font(.custom("NanumGothicRegular",size: 14))
+                            FirstResponderTextField(text: $snsURL, isFocused: $isDescriptionFocused, placeholder: "SNS 또는 홈페이지를 연결해주세요.", font: UIFont(name: "NanumGothicBold", size: 14))
+                                .foregroundColor(Color("text"))
                                 .padding(16)
                                 .onTapGesture {
                                     
                                 }
                             
                             RoundedRectangle(cornerRadius: 8)
-                                .stroke(Color("border"), lineWidth: 1)
+                                .stroke(isDescriptionFocused ? Color.blue : Color("border"), lineWidth: 1)
                                 .frame(width: 340, height: 40)
                             
                         }
@@ -210,13 +220,21 @@ struct ContentView: View {
                             ForEach(0..<textFieldCount, id: \.self) { i in
                                 HStack(spacing: 10) {
                                     ZStack {
-                                        TextField("SNS 또는 홈페이지를 연결해주세요.", text: $text)
-                                            .font(.custom("NanumGothicRegular",size: 14))
-                                            .padding(.horizontal,24)
+                                        TextField("SNS 또는 홈페이지를 연결해주세요.", text: $textFields[i], onEditingChanged: { isEditing in
+                                            if isEditing {
+                                                self.focusedTextField = i
+                                            } else {
+                                                self.focusedTextField = -1
+                                            }
+                                        })
+                                        .font(.custom("NanumGothicBold",size: 14))
+                                        .padding(.horizontal,24)
+                                        
                                         RoundedRectangle(cornerRadius: 8, style: .continuous)
                                             .fill(.clear)
                                             .frame(width: 290, height: 40)
-                                            .overlay(RoundedRectangle(cornerRadius: 8, style: .continuous).stroke( Color("border"), lineWidth: 1))
+                                            .overlay(RoundedRectangle(cornerRadius: 8, style: .continuous)
+                                                .stroke(self.focusedTextField == i ? Color.blue : Color("border"), lineWidth: 1))
                                     }
                                     
                                     Button(action: {
@@ -224,7 +242,7 @@ struct ContentView: View {
                                         self.showMaxLimit = false
                                     }) {
                                         Image("trash")
-                                            .overlay(RoundedRectangle(cornerRadius: 8).stroke(Color("border"), lineWidth: 1).frame(width:40,height:40))
+                                            .overlay(RoundedRectangle(cornerRadius: 8).stroke( Color("border"), lineWidth: 1).frame(width:40,height:40))
                                     }
                                 }
                             }
@@ -248,7 +266,7 @@ struct ContentView: View {
                                 .foregroundColor(.red)
                                 .opacity(self.showMaxLimit ? 1 : 0)
                                 .padding(.horizontal, 16)
-            
+                            
                         }
                         .offset(x: -10, y: 0)
                     }
@@ -293,6 +311,54 @@ struct ContentView: View {
 }
 
 
+struct FirstResponderTextField : UIViewRepresentable {
+    @Binding var text : String
+    @Binding var isFocused: Bool
+    let placeholder : String
+    let font: UIFont?
+    
+    
+    class Coordinator : NSObject, UITextFieldDelegate {
+        @Binding var text : String
+        @Binding var isFocused: Bool
+        var becameFirstResponder = false
+        
+        init(text: Binding<String>, isFocused: Binding<Bool>) {
+            self._text = text
+            self._isFocused = isFocused
+        }
+        func textFieldDidBeginEditing(_ textField: UITextField) {
+            self.isFocused = true
+        }
+        func textFieldDidEndEditing(_ textField: UITextField) {
+            self.isFocused = false
+        }
+        func textFieldDidChangeSelection(_ textField: UITextField) {
+            text = textField.text ?? ""
+        }
+    }
+    
+    func makeCoordinator() -> Coordinator {
+        return Coordinator(text: $text, isFocused: $isFocused)
+    }
+    
+    func makeUIView(context: Context) -> UITextField {
+        let textField = UITextField()
+        textField.delegate = context.coordinator
+        textField.placeholder = placeholder
+        if let font = font {
+            textField.font = font
+        }
+        return textField
+    }
+    
+    func updateUIView(_ uiView: UITextField, context: Context) {
+        if context.coordinator.becameFirstResponder {
+            uiView.becomeFirstResponder()
+            context.coordinator.becameFirstResponder = false
+        }
+    }
+}
 
 
 

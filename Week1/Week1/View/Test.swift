@@ -13,6 +13,7 @@ struct Test: View {
     @State var textFieldCount = 0
     @State var textFields = [String](repeating: "", count: 2)
     @State var showMaxLimit = false
+    @State var focusedTextField = -1
     
     var body: some View {
         
@@ -21,13 +22,21 @@ struct Test: View {
             ForEach(0..<textFieldCount, id: \.self) { i in
                 HStack(spacing: 10) {
                     ZStack {
-                        TextField("SNS 또는 홈페이지를 연결해주세요.", text: $text)
-                            .font(.custom("NanumGothicRegular",size: 14))
-                            .padding(24)
+                        TextField("SNS 또는 홈페이지를 연결해주세요.", text: $text, onEditingChanged: { isEditing in
+                            if isEditing {
+                                self.focusedTextField = i
+                            } else {
+                                self.focusedTextField = -1
+                            }
+                        })
+                        .font(.custom("NanumGothicRegular",size: 14))
+                        .padding(.horizontal,24)
+
                         RoundedRectangle(cornerRadius: 8, style: .continuous)
                             .fill(.clear)
                             .frame(width: 290, height: 40)
-                            .overlay(RoundedRectangle(cornerRadius: 8, style: .continuous).stroke( Color("border"), lineWidth: 1))
+                            .overlay(RoundedRectangle(cornerRadius: 8, style: .continuous)
+                            .stroke(self.focusedTextField == i ? Color.blue : Color("border"), lineWidth: 1))
                     }
                     
                     Button(action: {
