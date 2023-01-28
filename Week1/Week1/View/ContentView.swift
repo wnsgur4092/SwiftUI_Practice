@@ -19,26 +19,16 @@ struct ContentView: View {
     @State var secondSnsURL : String = ""
     @State var thirdSnsURL : String = ""
     @State var textFieldCount = 0
-    @State var textFields = [String]()
+
     @State var showText = false
     
     @State var text : String = ""
-    
-    
-    @State var focusedTextField : String = ""
-    
-    @State private var secondIsVisible = false
-    @State private var thirdIsVisible = false
-    
-    enum Field : Hashable {
-        case nickameField
-        case profileField
-        case introduceField
-        case websiteField
-    }
-    
-    @FocusState private var focusedField : Field?
 
+    
+    @State var textFields = [String](repeating: "", count: 2)
+    @State var showMaxLimit = false
+    
+    
     
     //MARK: - BODY
     var body: some View {
@@ -103,18 +93,17 @@ struct ContentView: View {
                             TextField("쩡대리", text: $vm.nickName)
                                 .font(.custom("NanumGothicRegular",size: 14))
                                 .padding(16)
-                                
+                            
                                 .onTapGesture {
-                                    self.focusedField = .nickameField
+                                    
                                 }
-                                .focused($focusedField, equals: .nickameField )
                             
                             
                             RoundedRectangle(cornerRadius: 8)
-                                .stroke(focusedField == .nickameField ? Color("focusedBorder") : Color("border"), lineWidth: 1)
+                                .stroke(Color("border"), lineWidth: 1)
                                 .frame(width: 340, height: 52)
                         }
-
+                        
                         
                         HStack {
                             Spacer()
@@ -135,12 +124,12 @@ struct ContentView: View {
                                 .font(.custom("NanumGothicRegular",size: 14))
                                 .padding(16)
                                 .onTapGesture {
-                                    self.focusedField = .profileField
+                                    
                                 }
-                                .focused($focusedField , equals : .profileField)
+                            
                             
                             RoundedRectangle(cornerRadius: 8)
-                                .stroke(focusedField == .profileField ? Color("focusedBorder") : Color("border"), lineWidth: 1)
+                                .stroke(Color("border"), lineWidth: 1)
                                 .frame(width: 340, height: 52)
                             
                         }
@@ -164,7 +153,7 @@ struct ContentView: View {
                             .font(.custom("NanumGothicBold", size: 16))
                         
                         ZStack(alignment: .topLeading) {
-                            RoundedRectangle(cornerRadius: 8).stroke(focusedField == .introduceField ? Color("focusedBorder") : Color("border"), lineWidth: 1)
+                            RoundedRectangle(cornerRadius: 8).stroke( Color("border"), lineWidth: 1)
                             if text.isEmpty {
                                 Text("다른 사람에게 나를 소개할 수 있도록\n자신의 활동을 자세하게 적어주세요")
                                     .padding(16)
@@ -174,16 +163,9 @@ struct ContentView: View {
                                     .font(.custom("NanumGothicRegular",size: 14))
                                     .lineSpacing(10)
                                     .frame(width: 340, height: 200, alignment: .topLeading)
-                                //                                    .background(Color.yellow)
-                                    .onTapGesture {
-                                        self.focusedField = .introduceField
-                                    }
-
-                                
                             }
                             
                             TextEditor(text: $text)
-                                .focused($focusedField, equals: .introduceField)
                                 .font(.custom("NanumGothicRegular",size: 14))
                                 .padding(16)
                                 .frame(width: 340, height: 200)
@@ -203,7 +185,7 @@ struct ContentView: View {
                     }
                     
                     //웹사이트
-                    VStack(alignment: .leading, spacing: 10) {
+                    VStack(alignment: .leading) {
                         //첫번째 웹사이트
                         Text("웹사이트 연결")
                             .font(.custom("NanumGothicBold", size: 16))
@@ -213,86 +195,66 @@ struct ContentView: View {
                                 .padding(16)
                                 .onTapGesture {
                                     
-                                    self.focusedField = .websiteField
                                 }
-                                .focused($focusedField, equals: .websiteField)
                             
                             RoundedRectangle(cornerRadius: 8)
-                                .stroke(focusedField == .websiteField ? Color("focusedBorder") : Color("border"), lineWidth: 1)
+                                .stroke(Color("border"), lineWidth: 1)
                                 .frame(width: 340, height: 40)
                             
                         }
                         
                         
+                        //두번째 & 세번째 웹사이트
                         
-                        VStack(spacing: 0) {
-                            ForEach(0..<textFields.count, id: \.self) { index in
+                        VStack(alignment: .leading, spacing: 10) {
+                            ForEach(0..<textFieldCount, id: \.self) { i in
                                 HStack(spacing: 10) {
                                     ZStack {
-                                        TextField("SNS 또는 홈페이지를 연결해주세요.", text: self.$textFields[index])
+                                        TextField("SNS 또는 홈페이지를 연결해주세요.", text: $text)
                                             .font(.custom("NanumGothicRegular",size: 14))
-                                            .padding(24)
-                                            .onTapGesture {
-                                                self.focusedTextField = String(index)
-                                            }
-                                        
-                                        
+                                            .padding(.horizontal,24)
                                         RoundedRectangle(cornerRadius: 8, style: .continuous)
                                             .fill(.clear)
                                             .frame(width: 290, height: 40)
-                                            .overlay(RoundedRectangle(cornerRadius: 8, style: .continuous).stroke(focusedTextField == String(index) ? Color.blue : Color("border"), lineWidth: 1))
+                                            .overlay(RoundedRectangle(cornerRadius: 8, style: .continuous).stroke( Color("border"), lineWidth: 1))
                                     }
                                     
-                                    Button {
-                                        if self.textFields.count > 0 {
-                                            self.textFields.removeLast()
-                                            
-                                            self.showText = false
-                                        }
-                                        
-                                        print(showText)
-                                    } label: {
+                                    Button(action: {
+                                        self.textFieldCount -= 1
+                                        self.showMaxLimit = false
+                                    }) {
                                         Image("trash")
                                             .overlay(RoundedRectangle(cornerRadius: 8).stroke(Color("border"), lineWidth: 1).frame(width:40,height:40))
                                     }
-                                    
                                 }
                             }
-                            .offset(x: -10, y: 0)
-                        }
-                        
-                        Button {
-                            if self.textFields.count < 2 {
-                                self.textFields.append("")
+                            
+                            Button(action: {
+                                if self.textFieldCount == 2 {
+                                    self.showMaxLimit = true
+                                } else {
+                                    self.textFieldCount += 1
+                                    self.textFields.append("")
+                                }
+                            }) {
+                                Text("+웹사이트 추가")
+                                    .font(.custom("NanumGothicRegular", size: 12))
+                                    .padding(.horizontal,16)
                             }
                             
-                            else {
-                                self.showText = true
-                            }
                             
-                            print(showText)
-                            
-                        } label: {
-                            Text("+웹사이트 추가")
-                                .font(.custom("NanumGothic", size: 12))
-                            
-                        }
-                        .onTapGesture {
-                            if self.textFields.count == 2 {
-                                self.showText.toggle()
-                            }
-                        }
-                        
-                        if showText == true {
                             Text("웹사이트는 3개까지 추가 가능합니다")
-                                .font(.custom("NaumGothic", size: 12))
+                                .font(.custom("NaumGothicRegular", size: 12))
                                 .foregroundColor(.red)
-                        } else {
-                            Text("")
+                                .opacity(self.showMaxLimit ? 1 : 0)
+                                .padding(.horizontal, 16)
+            
                         }
-                        
+                        .offset(x: -10, y: 0)
                     }
                 }
+                
+                
                 .padding(.top, 24)
                 .padding(.horizontal, 17.5)
                 //네비게이션 바
@@ -303,7 +265,13 @@ struct ContentView: View {
                             
                         } label: {
                             Image(systemName: "arrow.left")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 13, height: 11)
                                 .foregroundColor(.black)
+                            
+                                .padding(.vertical, 13)
+                                .padding()
                         }
                     }
                     
