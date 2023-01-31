@@ -22,7 +22,7 @@ struct CustomTextEditor: View {
                     .offset(x: 3, y: 8)
                     .padding(16)
                     .zIndex(2)
-                    .frame(width: 340, height: 200, alignment: .topLeading)
+                    .frame(alignment: .topLeading)
                     .disabled(true)
                     .foregroundColor(Color("placeholder"))
                     .font(.custom("NanumGothicBold",size: 14))
@@ -35,7 +35,7 @@ struct CustomTextEditor: View {
             FirstResponderTextEditor(text: $textInTextEditor, font: UIFont(name: "NanumGothicBold", size: 14), isFocused: $isFocusing)
                 .zIndex(1)
                 .padding(16)
-                .frame(width: 340, height: 200, alignment: .topLeading)
+                .frame(height: 200, alignment: .topLeading)
             
         }
     }

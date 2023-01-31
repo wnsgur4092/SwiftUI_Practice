@@ -9,9 +9,10 @@ import SwiftUI
 
 struct CustomTextField: View {
     
-    @ObservedObject var vm = ViewModel()
+//    @ObservedObject var vm = ViewModel()
     
     var placeholder : String
+    
     
     @State var textInTextField : String
     @State var isFocusing : Bool
@@ -25,17 +26,16 @@ struct CustomTextField: View {
         
         ZStack {
             FirstResponderTextField(text: $textInTextField, placeholder: placeholder, font: UIFont(name: "NanumGothicBold", size: 14), isFocused: $isFocusing)
-            
                 .foregroundColor(Color("text"))
                 .padding(16)
-                .frame(width: 340, height: 52)
+//                .frame(width: 340, height: 52)
             
             
             
             
             RoundedRectangle(cornerRadius: 8)
                 .stroke(isFocusing ? Color.blue : Color("border"), lineWidth: 1)
-                .frame(width: 340, height: 52)
+//                .frame(width: 340, height: 52)
             
         }
 

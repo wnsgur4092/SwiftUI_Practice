@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		BF5314832988D9E40013E636 /* CustomTextEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5314822988D9E40013E636 /* CustomTextEditor.swift */; };
 		BF5314852988DEB50013E636 /* NumberOfText.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5314842988DEB50013E636 /* NumberOfText.swift */; };
+		BF5314872988E62C0013E636 /* WebsitTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5314862988E62C0013E636 /* WebsitTextField.swift */; };
 		BF750E182988D2D50080EA5B /* Title.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF750E172988D2D50080EA5B /* Title.swift */; };
 		BF7C9098297F8DC700CAB2F5 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7C9097297F8DC700CAB2F5 /* ImagePicker.swift */; };
 		BF7C909D297FA1E400CAB2F5 /* Picker.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7C909C297FA1E400CAB2F5 /* Picker.swift */; };
@@ -29,6 +30,7 @@
 /* Begin PBXFileReference section */
 		BF5314822988D9E40013E636 /* CustomTextEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextEditor.swift; sourceTree = "<group>"; };
 		BF5314842988DEB50013E636 /* NumberOfText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberOfText.swift; sourceTree = "<group>"; };
+		BF5314862988E62C0013E636 /* WebsitTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebsitTextField.swift; sourceTree = "<group>"; };
 		BF750E172988D2D50080EA5B /* Title.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Title.swift; sourceTree = "<group>"; };
 		BF7C9097297F8DC700CAB2F5 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		BF7C909C297FA1E400CAB2F5 /* Picker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Picker.swift; sourceTree = "<group>"; };
@@ -62,10 +64,11 @@
 		BF750E162988D2450080EA5B /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				BF750E172988D2D50080EA5B /* Title.swift */,
 				BF7C90A2297FA94300CAB2F5 /* CustomTextField.swift */,
 				BF5314822988D9E40013E636 /* CustomTextEditor.swift */,
-				BF750E172988D2D50080EA5B /* Title.swift */,
 				BF5314842988DEB50013E636 /* NumberOfText.swift */,
+				BF5314862988E62C0013E636 /* WebsitTextField.swift */,
 			);
 			name = Components;
 			sourceTree = "<group>";
@@ -239,6 +242,7 @@
 				BF750E182988D2D50080EA5B /* Title.swift in Sources */,
 				BFC23946297CD9F4005EB2B1 /* ContentView.swift in Sources */,
 				BF5314832988D9E40013E636 /* CustomTextEditor.swift in Sources */,
+				BF5314872988E62C0013E636 /* WebsitTextField.swift in Sources */,
 				BF5314852988DEB50013E636 /* NumberOfText.swift in Sources */,
 				BF7C9098297F8DC700CAB2F5 /* ImagePicker.swift in Sources */,
 				BFE300B1297E9BBE00C1F088 /* ViewModel.swift in Sources */,
