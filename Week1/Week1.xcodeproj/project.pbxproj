@@ -7,9 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BF5314832988D9E40013E636 /* CustomTextEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5314822988D9E40013E636 /* CustomTextEditor.swift */; };
+		BF5314852988DEB50013E636 /* NumberOfText.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5314842988DEB50013E636 /* NumberOfText.swift */; };
+		BF750E182988D2D50080EA5B /* Title.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF750E172988D2D50080EA5B /* Title.swift */; };
 		BF7C9098297F8DC700CAB2F5 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7C9097297F8DC700CAB2F5 /* ImagePicker.swift */; };
 		BF7C909D297FA1E400CAB2F5 /* Picker.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7C909C297FA1E400CAB2F5 /* Picker.swift */; };
-		BF7C90A3297FA94300CAB2F5 /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7C90A2297FA94300CAB2F5 /* Test.swift */; };
+		BF7C90A3297FA94300CAB2F5 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7C90A2297FA94300CAB2F5 /* CustomTextField.swift */; };
 		BF7C90A6297FAA7500CAB2F5 /* ProfileImageMod.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7C90A5297FAA7500CAB2F5 /* ProfileImageMod.swift */; };
 		BF7C90AC2980198300CAB2F5 /* Unbounded-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BF7C90AB2980198300CAB2F5 /* Unbounded-Bold.ttf */; };
 		BF7C90B029801C8900CAB2F5 /* NanumGothicExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BF7C90AD29801C8900CAB2F5 /* NanumGothicExtraBold.ttf */; };
@@ -24,9 +27,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BF5314822988D9E40013E636 /* CustomTextEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextEditor.swift; sourceTree = "<group>"; };
+		BF5314842988DEB50013E636 /* NumberOfText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberOfText.swift; sourceTree = "<group>"; };
+		BF750E172988D2D50080EA5B /* Title.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Title.swift; sourceTree = "<group>"; };
 		BF7C9097297F8DC700CAB2F5 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		BF7C909C297FA1E400CAB2F5 /* Picker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Picker.swift; sourceTree = "<group>"; };
-		BF7C90A2297FA94300CAB2F5 /* Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
+		BF7C90A2297FA94300CAB2F5 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		BF7C90A5297FAA7500CAB2F5 /* ProfileImageMod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageMod.swift; sourceTree = "<group>"; };
 		BF7C90AB2980198300CAB2F5 /* Unbounded-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Unbounded-Bold.ttf"; sourceTree = "<group>"; };
 		BF7C90AD29801C8900CAB2F5 /* NanumGothicExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NanumGothicExtraBold.ttf; sourceTree = "<group>"; };
@@ -53,11 +59,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BF750E162988D2450080EA5B /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				BF7C90A2297FA94300CAB2F5 /* CustomTextField.swift */,
+				BF5314822988D9E40013E636 /* CustomTextEditor.swift */,
+				BF750E172988D2D50080EA5B /* Title.swift */,
+				BF5314842988DEB50013E636 /* NumberOfText.swift */,
+			);
+			name = Components;
+			sourceTree = "<group>";
+		};
 		BF7C9099297FA1A900CAB2F5 /* View */ = {
 			isa = PBXGroup;
 			children = (
 				BFC23945297CD9F4005EB2B1 /* ContentView.swift */,
-				BF7C90A2297FA94300CAB2F5 /* Test.swift */,
+				BF750E162988D2450080EA5B /* Components */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -219,12 +236,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				BF7C90A6297FAA7500CAB2F5 /* ProfileImageMod.swift in Sources */,
+				BF750E182988D2D50080EA5B /* Title.swift in Sources */,
 				BFC23946297CD9F4005EB2B1 /* ContentView.swift in Sources */,
+				BF5314832988D9E40013E636 /* CustomTextEditor.swift in Sources */,
+				BF5314852988DEB50013E636 /* NumberOfText.swift in Sources */,
 				BF7C9098297F8DC700CAB2F5 /* ImagePicker.swift in Sources */,
 				BFE300B1297E9BBE00C1F088 /* ViewModel.swift in Sources */,
 				BF7C909D297FA1E400CAB2F5 /* Picker.swift in Sources */,
 				BFC23944297CD9F4005EB2B1 /* Week1App.swift in Sources */,
-				BF7C90A3297FA94300CAB2F5 /* Test.swift in Sources */,
+				BF7C90A3297FA94300CAB2F5 /* CustomTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
