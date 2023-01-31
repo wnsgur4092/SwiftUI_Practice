@@ -10,78 +10,59 @@ import SwiftUI
 struct WebsitTextField: View {
     //MARK: - PROPERTIES
     var placeholder : String = "SNS 또는 홈페이지를 연결해주세요."
-    @State var textFields : [Dictionary<String, String>] = []
-    @State var textInTextField : String
     
-    @State var isFocusing : Bool
+    @State var textFields = [String]()
+    @State var focused = [Bool]()
+    @State var toDelete = [Int]()
     
     
     @State var firstSnsURL : String = ""
+    
     @State var secondSnsURL : String = ""
+    @State var focusedSecondSnsURL = false
+    
+    
+    @State var isFocusing : Bool = false
+    
     @State var thirdSnsURL : String = ""
+    @State var focusedThirdSnsURL = false
     
     
-    //MARK: - BODY
+    
     var body: some View {
         VStack {
             ForEach(0..<textFields.count, id: \.self) { index in
-                HStack {
-                    ZStack {
-         
-                        
-                        RoundedRectangle(cornerRadius: 8, style: .continuous)
-                            .fill(.clear)
-                            .frame(width: 340, height: 40)
-                            .overlay(RoundedRectangle(cornerRadius: 8, style: .continuous)
-                                .stroke(self.isFocusing ? Color.blue : Color("border"), lineWidth: 1))
-                    }
-                    Spacer()
-                        .frame(width: 30)
-                    
-                    Button(action: {
-                        self.textFields.remove(at: index)
-                    }) {
-                        Image("trash")
-                            .overlay(RoundedRectangle(cornerRadius: 8).stroke( Color("border"), lineWidth: 1).frame(width:40,height:40))
-                    }
-                }
-                .frame(width: .infinity, height: 40)
+                otherTextFields(index: index, text: self.$textFields[index], isFocusing: self.$focused[index])
             }
             
             Button(action: {
-                if self.textFields.count < 2 {
-                    self.textFields.append([self.placeholder: ""])
-                }
+                self.textFields.append("")
+                self.focused.append(false)
             }) {
-                Text("+웹사이트 추가")
-                    .font(.custom("NanumGothicRegular", size: 12))
-                    .padding(.horizontal,16)
+                Text("Add TextField")
             }
         }
-        
     }
     
-    
-    
-    var otherTextFields : some View {
+    func otherTextFields(index: Int, text : Binding<String>, isFocusing : Binding<Bool>) -> some View {
         HStack {
             ZStack {
-                FirstResponderTextField(text: $secondSnsURL, placeholder: placeholder, font: UIFont(name: "NanumGothicBold", size: 14), isFocused: $isFocusing)
-                
-                
+                FirstResponderTextField(text: text, placeholder: "Placeholder", font: UIFont(name: "NanumGothicBold", size: 14), isFocused: isFocusing)
                 
                 RoundedRectangle(cornerRadius: 8, style: .continuous)
                     .fill(.clear)
                     .frame(width: 340, height: 40)
                     .overlay(RoundedRectangle(cornerRadius: 8, style: .continuous)
-                        .stroke(isFocusing ? Color.blue : Color("border"), lineWidth: 1))
+                        .stroke(Color("border"), lineWidth: 1))
                 
             }
             Spacer()
                 .frame(width: 30)
             
             Button(action: {
-                
+//                self.toDelete.append(index)
+//                self.textFields.remove(atOffsets: self.toDelete)
+//                self.focused.remove(atOffsets: self.toDelete)
             }) {
                 Image("trash")
                     .overlay(RoundedRectangle(cornerRadius: 8).stroke( Color("border"), lineWidth: 1).frame(width:40,height:40))
@@ -89,8 +70,6 @@ struct WebsitTextField: View {
         }
         .frame(width: .infinity, height: 40)
     }
-    
-    
     
     
     
@@ -116,7 +95,7 @@ struct WebsitTextField: View {
 
 struct WebsitTextField_Previews: PreviewProvider {
     static var previews: some View {
-        WebsitTextField(placeholder: "SNS 또는 홈페이지", textInTextField: "", isFocusing: false)
+        WebsitTextField()
     }
 }
 
