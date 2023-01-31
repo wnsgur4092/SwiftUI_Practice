@@ -102,6 +102,7 @@ struct ContentView: View {
                             NumberOfText(textCount: vm.selfDescriptionCounted, totalText: "1000")
                         }
                         
+                        //MARK: - 5. 웹사이트
                         //웹사이트
                         VStack(alignment: .leading) {
                             //첫번째 웹사이트

@@ -19,21 +19,19 @@ struct CustomTextEditor: View {
             if textInTextEditor.isEmpty {
                 
                 Text("다른 사람에게 나를 소개할 수 있도록\n자신의 활동을 자세하게 적어주세요")
+                    .offset(x: 3, y: 8)
                     .padding(16)
                     .zIndex(2)
                     .frame(width: 340, height: 200, alignment: .topLeading)
-                    .background(Color.yellow.opacity(0.2))
                     .disabled(true)
                     .foregroundColor(Color("placeholder"))
                     .font(.custom("NanumGothicBold",size: 14))
                     .lineSpacing(10)
                     .onTapGesture {
                         print("---->Touched")
+                        isFocusing = true
                     }
-                
             }
-            
-            
             FirstResponderTextEditor(text: $textInTextEditor, font: UIFont(name: "NanumGothicBold", size: 14), isFocused: $isFocusing)
                 .zIndex(1)
                 .padding(16)
@@ -89,10 +87,14 @@ struct FirstResponderTextEditor: UIViewRepresentable {
     }
     
     func updateUIView(_ uiView: UITextView, context: Context) {
-        if context.coordinator.becameFirstResponder {
+        if isFocused {
             uiView.becomeFirstResponder()
-            context.coordinator.becameFirstResponder = false
         }
+        
+//        if context.coordinator.becameFirstResponder {
+//            uiView.becomeFirstResponder()
+//            context.coordinator.becameFirstResponder = false
+//        }
     }
 }
 
