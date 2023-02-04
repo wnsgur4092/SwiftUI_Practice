@@ -198,13 +198,6 @@ struct ContentView: View {
                     
                 }
                 .padding(.horizontal, 25.5)
-                
- 
-                
-                
-                
-        
-                
             }
 
         }
