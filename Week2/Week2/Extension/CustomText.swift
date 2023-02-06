@@ -22,6 +22,8 @@ struct CustomText: View {
 //                .foregroundColor(Color("text"))
 //                .padding(16)
 //                .frame(width: 340, height: 52)
+             
+            
             
             
             
@@ -42,7 +44,7 @@ struct FirstResponderTextField : UIViewRepresentable {
     @Binding var isFocused: Bool
     
     
-    class Coordinator : NSObject, UITextFieldDelegate {
+    class Coordinator : NSObject, UITextViewDelegate {
         @Binding var text : String
         @Binding var isFocused : Bool
         var becameFirstResponder = false
@@ -51,15 +53,15 @@ struct FirstResponderTextField : UIViewRepresentable {
             self._text = text
             self._isFocused = isFocused
         }
-        func textFieldDidChangeSelection(_ textField: UITextField) {
-            text = textField.text ?? ""
-        }
-        func textFieldDidBeginEditing(_ textField: UITextField) {
-            isFocused = true
-        }
-        func textFieldDidEndEditing(_ textField: UITextField) {
-            isFocused = false
-        }
+//        func textFieldDidChangeSelection(_ textField: UITextField) {
+////            text = textField.text ?? ""
+//        }
+//        func textFieldDidBeginEditing(_ textField: UITextField) {
+//            isFocused = true
+//        }
+//        func textFieldDidEndEditing(_ textField: UITextField) {
+//            isFocused = false
+//        }
     }
     
     func makeCoordinator() -> Coordinator {
@@ -67,12 +69,12 @@ struct FirstResponderTextField : UIViewRepresentable {
     }
     
     func makeUIView(context: Context) -> UITextField {
-        let textField = UITextField()
-        textField.delegate = context.coordinator
+        let textView = UITextField()
+//        textView.delegate = context.coordinator 
         if let font = font {
-            textField.font = font
+            textView.font = font
         }
-        return textField
+        return textView
     }
     
     func updateUIView(_ uiView: UITextField, context: Context) {

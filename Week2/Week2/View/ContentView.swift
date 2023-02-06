@@ -9,15 +9,20 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        NavigationView{
-            VStack{
-                Text("할일 목록")
-            }
-            navigationTitle("할 일 목록")
+        VStack{
+            NavigationView()
+                .padding(16)
+            
+            SearchView()
+            
         }
-        .navigationBarTitleDisplayMode(.large)
+        
     }
 }
+
+//MARK: - COMPONENTS
+
+
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
