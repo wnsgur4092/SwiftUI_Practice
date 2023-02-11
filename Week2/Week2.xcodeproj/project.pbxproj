@@ -14,6 +14,7 @@
 		BF495E8829978D93000B0C37 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF495E8729978D93000B0C37 /* SearchBar.swift */; };
 		BF495E8B2997A51B000B0C37 /* TodoAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF495E8A2997A51B000B0C37 /* TodoAPI.swift */; };
 		BF495E8D2997A7E2000B0C37 /* TodosViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF495E8C2997A7E2000B0C37 /* TodosViewModel.swift */; };
+		BF495E8F2997AAAC000B0C37 /* TodosResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF495E8E2997AAAC000B0C37 /* TodosResponse.swift */; };
 		BF53FBC9298E6AC8003A8A13 /* Week2App.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF53FBC8298E6AC8003A8A13 /* Week2App.swift */; };
 		BF53FBCB298E6AC8003A8A13 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF53FBCA298E6AC8003A8A13 /* ContentView.swift */; };
 		BF53FBCD298E6AC9003A8A13 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BF53FBCC298E6AC9003A8A13 /* Assets.xcassets */; };
@@ -27,6 +28,7 @@
 		BF495E8729978D93000B0C37 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		BF495E8A2997A51B000B0C37 /* TodoAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoAPI.swift; sourceTree = "<group>"; };
 		BF495E8C2997A7E2000B0C37 /* TodosViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodosViewModel.swift; sourceTree = "<group>"; };
+		BF495E8E2997AAAC000B0C37 /* TodosResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodosResponse.swift; sourceTree = "<group>"; };
 		BF53FBC5298E6AC8003A8A13 /* Week2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Week2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF53FBC8298E6AC8003A8A13 /* Week2App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Week2App.swift; sourceTree = "<group>"; };
 		BF53FBCA298E6AC8003A8A13 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -68,6 +70,7 @@
 		BF1E6488298FBA0E00E56C78 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				BF495E8E2997AAAC000B0C37 /* TodosResponse.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -109,8 +112,8 @@
 			children = (
 				BF53FBC8298E6AC8003A8A13 /* Week2App.swift */,
 				BF01A1742990BA09003B8CCE /* Extension */,
-				BF1E6489298FBA1200E56C78 /* ViewModel */,
 				BF1E6488298FBA0E00E56C78 /* Model */,
+				BF1E6489298FBA1200E56C78 /* ViewModel */,
 				BF1E6487298FBA0800E56C78 /* View */,
 				BF495E892997A504000B0C37 /* API */,
 				BF53FBCC298E6AC9003A8A13 /* Assets.xcassets */,
@@ -203,6 +206,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF495E8F2997AAAC000B0C37 /* TodosResponse.swift in Sources */,
 				BF495E8829978D93000B0C37 /* SearchBar.swift in Sources */,
 				BF495E8B2997A51B000B0C37 /* TodoAPI.swift in Sources */,
 				BF01A1732990B7CF003B8CCE /* SearchView.swift in Sources */,

@@ -11,6 +11,13 @@ import Combine
 class TodosViewModel : ObservableObject {
     
     init(){
-        TodoAPI.fetchTodos()
+        TodoAPI.fetchTodos { result in
+            switch result {
+            case .success(let todosResponse):
+                print("TodosVM - todosResponse : \(todosResponse)")
+            case .failure(let failure):
+                print("TodosVM - failure : \(failure)")
+            }
+        }
     }
 }
