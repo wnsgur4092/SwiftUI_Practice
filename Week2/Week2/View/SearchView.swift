@@ -6,8 +6,10 @@
 //
 
 import SwiftUI
+import UIKit
 
 struct SearchView: View {
+    //MARK: - PROPERTIES
     @State var text : String = ""
     
     var body: some View {

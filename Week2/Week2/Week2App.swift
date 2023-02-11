@@ -9,6 +9,8 @@ import SwiftUI
 
 @main
 struct Week2App: App {
+    @StateObject var todosViewModel = TodosViewModel()
+    
     var body: some Scene {
         WindowGroup {
             ContentView()

@@ -9,18 +9,40 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack{
-            NavigationView()
-                .padding(16)
+        ScrollView{
+            mainHeader
             
-            SearchView()
+            SearchBar()
+            
+            VStack{
+                TodoCell()
+            }
             
         }
+        .frame(maxWidth: .infinity)
+        .padding(16)
         
     }
+    
+    //MARK: - COMPONENTS
+    fileprivate var mainHeader : some View {
+        HStack{
+            Text("할일 목록")
+            
+            Spacer()
+            
+            Button {
+                
+            } label: {
+                Text("추가")
+            }
+        }
+    }
+    
+    
 }
 
-//MARK: - COMPONENTS
+
 
 
 
