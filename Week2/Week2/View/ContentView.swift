@@ -8,15 +8,16 @@
 import SwiftUI
 
 struct ContentView: View {
+    //MARK: - PREVIEW
+    @StateObject var viewModel : TodosViewModel
+    //MARK: - BODY
     var body: some View {
         ScrollView{
             mainHeader
             
             SearchBar()
             
-            VStack{
-                TodoCell()
-            }
+            todosList
             
         }
         .frame(maxWidth: .infinity)
@@ -39,6 +40,14 @@ struct ContentView: View {
         }
     }
     
+    fileprivate var todosList : some View {
+        VStack(spacing: 10){
+            ForEach(viewModel.todos?.data ?? [], id :\.id) { todo in
+                TodoCell(text: todo.title ?? "")
+            }
+        }
+    }
+    
     
 }
 
@@ -48,6 +57,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView(viewModel: TodosViewModel())
     }
 }

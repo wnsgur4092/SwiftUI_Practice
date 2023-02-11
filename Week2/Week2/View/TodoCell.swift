@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct TodoCell: View {
-    
+    var text : String = "오늘도 빡코딩을 한다"
     
     var body: some View {
         HStack {
             HStack{
                 //텍스트
-                Text("오늘도 빡코딩을 한다")
+                Text(text)
                     .padding(.vertical, 9)
                     .padding(.horizontal, 17)
                 

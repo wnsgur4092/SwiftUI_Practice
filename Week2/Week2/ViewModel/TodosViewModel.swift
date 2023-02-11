@@ -6,18 +6,52 @@
 //
 
 import Foundation
+import Alamofire
 import Combine
 
-class TodosViewModel : ObservableObject {
+class TodosViewModel: ObservableObject {
     
-    init(){
-        TodoAPI.fetchTodos { result in
+    @Published var todos: TodosResponse?
+    
+    private let baseURL = "https://phplaravel-574671-2962113.cloudwaysapps.com/api/v1/todos"
+    
+    private let decoder = JSONDecoder()
+    private let encoder = JSONEncoder()
+    
+    var subscription = Set<AnyCancellable>()
+    
+    init() {
+        self.fetchTodos { (result) in
             switch result {
             case .success(let todosResponse):
-                print("TodosVM - todosResponse : \(todosResponse)")
-            case .failure(let failure):
-                print("TodosVM - failure : \(failure)")
+                self.todos = todosResponse
+            case .failure(let error):
+                print(error.localizedDescription)
             }
         }
     }
+
+    func fetchTodos(completion: @escaping (Result<TodosResponse, Error>) -> Void) {
+        AF.request(baseURL, method: .get)
+            .validate(statusCode: 200...200)
+            .validate(contentType: ["application/json"])
+            .responseData { (response) in
+                switch response.result {
+                case .success(let data):
+                    do {
+                        let todosResponse = try JSONDecoder().decode(TodosResponse.self, from: data)
+                        completion(.success(todosResponse))
+                    } catch {
+                        completion(.failure(error))
+                    }
+                case .failure(let error):
+                    completion(.failure(error))
+                }
+            }
+    }
 }
+
+
+
+
+

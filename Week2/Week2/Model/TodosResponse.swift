@@ -7,6 +7,22 @@
 
 import Foundation
 
+//    func fetchTodos() {
+//        AF.request(dummyURL, method: .get)
+//            .validate(statusCode: 200..<300)
+//            .validate(contentType: ["application/json"])
+//            .responseDecodable(of: TodosResponse.self) { [weak self] (response) in
+//                guard let self = self else { return }
+//                switch response.result {
+//                case .success(let todoResponse):
+//                    self.todos.append(todoResponse)
+//                case .failure(let error):
+//                    print(error.localizedDescription)
+//                }
+//            }
+//            .store(in: &subscription)
+//    }
+
 // MARK: - TodosResponse
 struct TodosResponse: Codable {
     let data: [Todo]?
